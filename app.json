@@ -1,0 +1,52 @@
+{
+  "configVersion": "v2",
+  "app": {
+    "appId": 27280,
+    "appName": "Spotify",
+    "appType": "app",
+    "version": {
+      "code": 1,
+      "name": "1.0.1"
+    },
+    "icon": "icon.png",
+    "vender": "zepp",
+    "description": "Spotify console player"
+  },
+  "permissions": [],
+  "runtime": {
+    "apiVersion": {
+      "compatible": "1.0.0",
+      "target": "1.0.1",
+      "minVersion": "1.0.0"
+    }
+  },
+  "targets": {
+    "common": {
+      "module": {
+        "page": {
+          "pages": ["pages/index"]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "amazfit-band7",
+          "deviceSource": 253
+        },
+        {
+          "name": "amazfit-band7-w",
+          "deviceSource": 254
+        }
+      ],
+      "designWidth": 194
+    }
+  },
+  "i18n": {
+    "en-US": {
+      "appName": "Spotify"
+    }
+  },
+  "defaultLanguage": "en-US"
+}
