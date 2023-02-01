@@ -24,7 +24,7 @@
     "common": {
       "module": {
         "page": {
-          "pages": ["pages/index"]
+          "pages": ["pages/index", "pages/playlists"]
         },
         "app-side": {
           "path": "app-side/index"
