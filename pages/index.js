@@ -10,6 +10,9 @@ const { messageBuilder } = getApp()._options.globalData;
 // Empty initializations
 let song;
 let artist;
+let playState = "pause";
+
+let isPlayingWidget = "";
 
 Page({
   state: {},
@@ -40,63 +43,62 @@ Page({
       text: "",
     });
 
-    hmUI.createWidget(hmUI.widget.BUTTON, {
+    isPlayingWidget = hmUI.createWidget(hmUI.widget.TEXT, {
       x: 0,
-      y: px(180),
+      y: px(120),
       w: px(DEVICE_WIDTH),
       h: px(30),
-      text_size: px(18),
-      radius: px(12),
-      normal_color: 0x1db954,
-      press_color: 0x3a9b5c,
-      text: "Next",
-      click_func: () => {
-        console.log("click button");
-        this.player("next");
-      },
-    });
-    hmUI.createWidget(hmUI.widget.BUTTON, {
-      x: 0,
-      y: px(220),
-      w: px(DEVICE_WIDTH),
-      h: px(50),
+      color: 0xb3b3b3,
       text_size: px(24),
-      radius: px(12),
-      normal_color: 0x1db954,
-      press_color: 0x3a9b5c,
-      text: "Play",
-      click_func: () => {
-        logger.log("click button");
-        this.player("play");
-      },
+      align_h: hmUI.align.CENTER_H,
+      align_v: hmUI.align.CENTER_V,
+      text_style: hmUI.text_style.NONE,
+      text: "",
     });
 
-    hmUI.createWidget(hmUI.widget.BUTTON, {
-      x: 0,
-      y: px(280),
-      w: px(DEVICE_WIDTH),
-      h: px(50),
-      text_size: px(24),
-      radius: px(12),
-      normal_color: 0x1db954,
-      press_color: 0x3a9b5c,
-      text: "Pause",
-      click_func: () => {
-        logger.log("click button");
-        this.player("pause");
-      },
+    const playBtn = hmUI.createWidget(hmUI.widget.IMG, {
+      x: DEVICE_WIDTH / 2 - px(24),
+      y: px(200),
+      src: `${playState}.png`,
     });
+    playBtn.addEventListener(hmUI.event.CLICK_DOWN, (info) => {
+      playBtn.setProperty(hmUI.prop.MORE, { src: `${playState}.png` });
+      if (playState === "play") {
+        playState = "pause";
+      } else playState = "play";
+      this.player(playState);
+    });
+
+    const nextBtn = hmUI.createWidget(hmUI.widget.IMG, {
+      x: DEVICE_WIDTH / 2 + px(48),
+      y: px(200),
+      src: "next.png",
+    });
+    nextBtn.addEventListener(hmUI.event.CLICK_DOWN, (info) => {
+      this.player("next");
+    });
+
+    const previousBtn = hmUI.createWidget(hmUI.widget.IMG, {
+      x: DEVICE_WIDTH / 2 - px(48) - px(48),
+      y: px(200),
+      src: "previous.png",
+    });
+    previousBtn.addEventListener(hmUI.event.CLICK_DOWN, (info) => {
+      this.player("previous");
+    });
+
+    this.player();
   },
-  player(method) {
+  player(method = "") {
     messageBuilder
       .request({
         method: method,
       })
       .then((data) => {
-        logger.log(JSON.stringify(data));
         const {
-          songName = "failed to retrieve song name",
-          artistNames = "failed to retrieve artist name(s)",
+          songName = "No content playing",
+          artistNames = "check if any device is streaming",
+          isPlaying = false,
         } = data;
 
         song.setProperty(hmUI.prop.MORE, {
@@ -106,6 +108,13 @@ Page({
         artist.setProperty(hmUI.prop.MORE, {
           text: artistNames,
         });
+
+        if (isPlaying) {
+          // doesn't work?
+          playBtn.setProperty(hmUI.prop.MORE, { src: "play.png" });
+        } else {
+          playBtn.setProperty(hmUI.prop.MORE, { src: "pause.png" });
+        }
       });
   },
 });
