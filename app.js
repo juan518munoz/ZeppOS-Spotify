@@ -1,8 +1,10 @@
 import "./shared/device-polyfill";
 import { MessageBuilder } from "./shared/message";
+import LocalStorage from "./utils/storage";
 
 const appId = 27280;
 const messageBuilder = new MessageBuilder({ appId });
+const fileName = "test.txt";
 
 App({
   globalData: {
@@ -11,9 +13,6 @@ App({
   onCreate(options) {
     console.log("app on create invoke");
     messageBuilder.connect();
-    messageBuilder.request({
-      method: "",
-    });
   },
 
   onDestroy(options) {

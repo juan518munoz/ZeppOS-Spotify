@@ -2,7 +2,7 @@ import { MessageBuilder } from "../shared/message";
 
 const messageBuilder = new MessageBuilder();
 
-const refreshToken = "";
+const refreshToken = ""
 const client_id = "";
 const client_secret = "";
 let SPOTIFY_AUTH_TOKEN = "";
@@ -15,6 +15,7 @@ const http = {
   "": "GET",
   liked: "PUT",
   notLiked: "DELETE",
+  shuffle: "PUT",
 };
 
 const refreshBearerToken = async () => {
@@ -35,7 +36,7 @@ const refreshBearerToken = async () => {
     });
 
     const { body = {} } = res;
-    const { access_token = "" } = JSON.parse(body); // body
+    const { access_token = "" } = body; //= JSON.parse(body); // body
 
     SPOTIFY_AUTH_TOKEN = access_token;
   } catch (error) {
@@ -55,7 +56,7 @@ const isSongLiked = async (currID) => {
     });
 
     const { body } = res;
-    const { items = [] } = JSON.parse(body); // body
+    const { items = [] } = body; //= JSON.parse(body); // body
     items.forEach((item) => {
       const { track: { id = "" } = {} } = item;
       if (id == currID) isLiked = true;
@@ -70,7 +71,7 @@ const isSongLiked = async (currID) => {
 const player = async (ctx, func = "", args = "") => {
   try {
     const res = await fetch({
-      url: `https://api.spotify.com/v1/me/player/${func}`,
+      url: `https://api.spotify.com/v1/me/player/${func}?${args}`,
       method: http[func],
       headers: {
         Authorization: `Bearer ${SPOTIFY_AUTH_TOKEN}`,
@@ -81,27 +82,40 @@ const player = async (ctx, func = "", args = "") => {
       await refreshBearerToken();
       return await player(ctx);
     }
-
     if (func != "") return await player(ctx);
+    else if (status == 204) {
+      ctx.response({
+        songName: "No device playing",
+        artistNames: "start streaming in any device",
+        isPlaying: false,
+        isLiked: false,
+        progress: 0,
+        songId: "",
+      });
+    }
 
     const { body = {} } = res;
     const {
+      shuffle_state = false,
       progress_ms = 0,
       item: { name = "", artists = [], duration_ms = 0, id = "" } = {},
       is_playing = false,
-    } = JSON.parse(body); // body
+    } = body; //= JSON.parse(body); // body
 
     let artistNames = artists.map((artist) => artist.name).join(", ");
     const isLiked = await isSongLiked(id);
     const progress = (progress_ms * 100) / duration_ms / 100;
+    const queue = await getQueue();
     ctx.response({
       data: {
         songName: name,
         artistNames: artistNames,
         isPlaying: is_playing,
         isLiked: isLiked,
+        isShuffled: shuffle_state,
         progress: progress,
         songId: id,
+        queue: queue.slice(0, 16),
       },
     });
   } catch (error) {
@@ -129,6 +143,32 @@ const tracks = async (ctx, func = "", curSongId = "") => {
       return await player(ctx);
     }
   } catch (error) {}
+};
+
+const getQueue = async (ctx) => {
+  try {
+    const res = await fetch({
+      url: `https://api.spotify.com/v1/me/player/queue`,
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${SPOTIFY_AUTH_TOKEN}`,
+      },
+    });
+    const { status } = res;
+    if (status != 200) throw "Error";
+
+    let q = [];
+    const { body = {} } = res;
+    const { queue } = body; //= JSON.parse(body); // body
+    queue.forEach((item) => {
+      const { name = "" } = item;
+      q.push(name);
+    });
+
+    return q;
+  } catch (error) {
+    return [];
+  }
 };
 
 AppSideService({
