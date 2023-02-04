@@ -1,10 +1,13 @@
+const client_id = "465097c0dc824b8999a6945037afb15f";
+const client_secret = "ca566ed2daef45838bbdd4498851c5c9";
+
 AppSettingsPage({
   getRefreshToken(props) {
     let details = {
       grant_type: "authorization_code",
       code: props.settingsStorage.getItem("authToken"),
-      client_id: "",
-      client_secret: "",
+      client_id: client_id,
+      client_secret: client_secret,
       redirect_uri: "https://juan518munoz.github.io/ZeppOS-Spotify-Web/",
     };
     let formBody = [];
@@ -28,7 +31,7 @@ AppSettingsPage({
       .then((data) => {
         console.log(data);
 
-        const { refresh_token = "", error_description = "Unkown error" } = data; //JSON.parse(body); // body
+        const { refresh_token = "", error_description = "Unkown error" } = data;
 
         if (refresh_token != "")
           props.settingsStorage.setItem("refreshToken", refresh_token);
@@ -48,7 +51,7 @@ AppSettingsPage({
   build(props) {
     const authTokenBtn = Link(
       {
-        source: `https://accounts.spotify.com/en/authorize?client_id=465097c0dc824b8999a6945037afb15f&response_type=code&redirect_uri=https://juan518munoz.github.io/ZeppOS-Spotify-Web/&scope=ugc-image-upload user-read-playback-state user-modify-playback-state user-read-currently-playing app-remote-control streaming playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public user-follow-modify user-follow-read user-read-playback-position user-top-read user-read-recently-played user-library-modify user-library-read user-read-email user-read-private`,
+        source: `https://accounts.spotify.com/en/authorize?client_id=${client_id}&response_type=code&redirect_uri=https://juan518munoz.github.io/ZeppOS-Spotify-Web/&scope=ugc-image-upload user-read-playback-state user-modify-playback-state user-read-currently-playing app-remote-control streaming playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public user-follow-modify user-follow-read user-read-playback-position user-top-read user-read-recently-played user-library-modify user-library-read user-read-email user-read-private`,
       },
       [
         Button({

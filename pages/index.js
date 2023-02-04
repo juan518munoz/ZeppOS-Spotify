@@ -32,7 +32,7 @@ Page({
 
     song = hmUI.createWidget(hmUI.widget.TEXT, {
       x: 0,
-      y: px(DEVICE_HEIGHT * 0.1),
+      y: px(DEVICE_HEIGHT * 0.12),
       w: px(DEVICE_WIDTH),
       h: px(50),
       color: 0xffffff,
@@ -45,7 +45,7 @@ Page({
 
     artist = hmUI.createWidget(hmUI.widget.TEXT, {
       x: 0,
-      y: px(DEVICE_HEIGHT * 0.22),
+      y: px(DEVICE_HEIGHT * 0.24),
       w: px(DEVICE_WIDTH),
       h: px(30),
       color: 0xb3b3b3,
@@ -58,7 +58,7 @@ Page({
 
     playBtn = hmUI.createWidget(hmUI.widget.IMG, {
       x: DEVICE_WIDTH / 2 - px(24),
-      y: px(200),
+      y: px(DEVICE_HEIGHT * 0.55),
       src: `${playState}.png`,
     });
     playBtn.addEventListener(hmUI.event.CLICK_DOWN, () => {
@@ -70,7 +70,7 @@ Page({
 
     const nextBtn = hmUI.createWidget(hmUI.widget.IMG, {
       x: px(DEVICE_WIDTH * 0.95 - 48),
-      y: px(200),
+      y: px(DEVICE_HEIGHT * 0.55),
       src: "next.png",
     });
     nextBtn.addEventListener(hmUI.event.CLICK_DOWN, () => {
@@ -82,7 +82,7 @@ Page({
 
     const previousBtn = hmUI.createWidget(hmUI.widget.IMG, {
       x: px(DEVICE_WIDTH * 0.05),
-      y: px(200),
+      y: px(DEVICE_HEIGHT * 0.55),
       src: "previous.png",
     });
     previousBtn.addEventListener(hmUI.event.CLICK_DOWN, () => {
@@ -94,7 +94,7 @@ Page({
 
     hmUI.createWidget(hmUI.widget.FILL_RECT, {
       x: px(8),
-      y: px(DEVICE_HEIGHT / 2 - 24),
+      y: px(DEVICE_HEIGHT * 0.4),
       w: px(DEVICE_WIDTH - 8),
       h: px(4),
       radius: px(2),
@@ -102,7 +102,7 @@ Page({
     });
     progressBar = hmUI.createWidget(hmUI.widget.FILL_RECT, {
       x: px(8),
-      y: px(DEVICE_HEIGHT / 2 - 24),
+      y: px(DEVICE_HEIGHT * 0.4),
       w: px(0),
       h: px(4),
       radius: px(2),
@@ -174,37 +174,41 @@ Page({
         method: method,
       })
       .then((data) => {
-        const {
-          songName = "No content playing",
-          artistNames = "check if any device is streaming",
-          isPlaying = false,
-          isLiked = false,
-          isShuffled = false,
-          progress = 0,
-          songId = "",
-          queue = [],
-        } = data;
+        if (method == "") {
+          const {
+            songName = "No content playing",
+            artistNames = "check if any device is streaming",
+            isPlaying = false,
+            isLiked = false,
+            isShuffled = false,
+            progress = 0,
+            songId = "",
+            queue = [],
+          } = data;
 
-        song.setProperty(hmUI.prop.MORE, {
-          text: songName,
-        });
+          song.setProperty(hmUI.prop.MORE, {
+            text: songName,
+          });
 
-        artist.setProperty(hmUI.prop.MORE, {
-          text: artistNames,
-        });
+          artist.setProperty(hmUI.prop.MORE, {
+            text: artistNames,
+          });
 
-        isPlaying ? (playState = "play") : (playState = "pause");
-        playBtn.setProperty(hmUI.prop.MORE, { src: `${playState}.png` });
-        isLiked ? (likeState = "liked") : (likeState = "notLiked");
-        isShuffled ? (shuffleState = "shuffle") : (shuffleState = "noShuffle");
+          isPlaying ? (playState = "play") : (playState = "pause");
+          playBtn.setProperty(hmUI.prop.MORE, { src: `${playState}.png` });
+          isLiked ? (likeState = "liked") : (likeState = "notLiked");
+          isShuffled
+            ? (shuffleState = "shuffle")
+            : (shuffleState = "noShuffle");
 
-        progressBar.setProperty(hmUI.prop.MORE, {
-          w: px(DEVICE_WIDTH * progress - 8),
-        });
+          progressBar.setProperty(hmUI.prop.MORE, {
+            w: px(DEVICE_WIDTH * progress - 8),
+          });
 
-        curSongId = songId;
+          curSongId = songId;
 
-        if (queue.length != 0) curQueue = queue;
+          if (queue.length != 0) curQueue = queue;
+        }
       });
   },
   tracks(method = "") {

@@ -2,8 +2,8 @@ import { MessageBuilder } from "../shared/message";
 
 const messageBuilder = new MessageBuilder();
 
-const client_id = "";
-const client_secret = "";
+const client_id = "465097c0dc824b8999a6945037afb15f";
+const client_secret = "ca566ed2daef45838bbdd4498851c5c9";
 let SPOTIFY_AUTH_TOKEN = "";
 
 const http = {
@@ -42,7 +42,7 @@ const refreshBearerToken = async () => {
     }
 
     const { body = {} } = res;
-    const { access_token = "" } = body; //JSON.parse(body); // body
+    const { access_token = "" } = JSON.parse(body); // body
 
     SPOTIFY_AUTH_TOKEN = access_token;
   } catch (error) {
@@ -62,7 +62,7 @@ const isSongLiked = async (currID) => {
     });
 
     const { body } = res;
-    const { items = [] } = body; //JSON.parse(body); // body
+    const { items = [] } = JSON.parse(body); // body
     items.forEach((item) => {
       const { track: { id = "" } = {} } = item;
       if (id == currID) isLiked = true;
@@ -88,7 +88,7 @@ const getQueue = async (ctx) => {
 
     let q = [];
     const { body = {} } = res;
-    const { queue } = body; //JSON.parse(body); // body
+    const { queue } = JSON.parse(body); // body
     queue.forEach((item) => {
       const { name = "" } = item;
       q.push(name);
@@ -143,7 +143,7 @@ const player = async (ctx, func = "", args = "") => {
       });
       return;
     }
-    if (func != "") return await player(ctx);
+    if (func != "") return;
     else if (status == 204) {
       ctx.response({
         songName: "No device playing",
@@ -161,7 +161,7 @@ const player = async (ctx, func = "", args = "") => {
       progress_ms = 0,
       item: { name = "", artists = [], duration_ms = 0, id = "" } = {},
       is_playing = false,
-    } = body; //JSON.parse(body); // body
+    } = JSON.parse(body); // body
 
     let artistNames = artists.map((artist) => artist.name).join(", ");
     const isLiked = await isSongLiked(id);

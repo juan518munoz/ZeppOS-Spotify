@@ -45,7 +45,7 @@
       ],
       "designWidth": 194
     },
-    "gts-mini": {
+    "gts4mini": {
       "module": {
         "page": {
           "pages": ["pages/index", "pages/playlists"]
@@ -68,6 +68,54 @@
         }
       ],
       "designWidth": 336
+    },
+    "gts3": {
+      "module": {
+        "page": {
+          "pages": ["pages/index", "pages/playlists"]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "gts-3",
+          "deviceSource": 224
+        },
+        {
+          "name": "gts-3-w",
+          "deviceSource": 225
+        }
+      ],
+      "designWidth": 390
+    },
+    "gtr3": {
+      "module": {
+        "page": {
+          "pages": ["pages/index", "pages/playlists"]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "gtr-3",
+          "deviceSource": 226
+        },
+        {
+          "name": "gtr-3-w",
+          "deviceSource": 227
+        }
+      ],
+      "designWidth": 454
     }
   },
   "i18n": {
