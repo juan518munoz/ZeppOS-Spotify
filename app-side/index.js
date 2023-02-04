@@ -2,8 +2,8 @@ import { MessageBuilder } from "../shared/message";
 
 const messageBuilder = new MessageBuilder();
 
-const client_id = "465097c0dc824b8999a6945037afb15f";
-const client_secret = "ca566ed2daef45838bbdd4498851c5c9";
+const client_id = "";
+const client_secret = "";
 let SPOTIFY_AUTH_TOKEN = "";
 
 const http = {

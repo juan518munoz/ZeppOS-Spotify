@@ -1,5 +1,5 @@
-const client_id = "465097c0dc824b8999a6945037afb15f";
-const client_secret = "ca566ed2daef45838bbdd4498851c5c9";
+const client_id = "";
+const client_secret = "";
 
 AppSettingsPage({
   getRefreshToken(props) {
