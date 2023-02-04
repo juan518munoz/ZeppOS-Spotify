@@ -194,6 +194,7 @@ Page({
         });
 
         isPlaying ? (playState = "play") : (playState = "pause");
+        playBtn.setProperty(hmUI.prop.MORE, { src: `${playState}.png` });
         isLiked ? (likeState = "liked") : (likeState = "notLiked");
         isShuffled ? (shuffleState = "shuffle") : (shuffleState = "noShuffle");
 
@@ -247,5 +248,8 @@ Page({
       likeBtn.setProperty(hmUI.prop.MORE, { src: `${likeState}.png` });
       shuffleBtn.setProperty(hmUI.prop.MORE, { src: `${shuffleState}.png` });
     });
+  },
+  onDestroy() {
+    vibrate && vibrate.stop();
   },
 });

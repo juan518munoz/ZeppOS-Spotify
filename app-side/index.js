@@ -2,7 +2,6 @@ import { MessageBuilder } from "../shared/message";
 
 const messageBuilder = new MessageBuilder();
 
-const refreshToken = ""
 const client_id = "";
 const client_secret = "";
 let SPOTIFY_AUTH_TOKEN = "";
@@ -18,13 +17,17 @@ const http = {
   shuffle: "PUT",
 };
 
-const refreshBearerToken = async () => {
+const getInitialToken = async () => {
   try {
     let urlencoded = new URLSearchParams();
-    urlencoded.append("grant_type", "refresh_token");
+    urlencoded.append("grant_type", "authorization_code");
+    urlencoded.append("code", settings.settingsStorage.getItem("authToken"));
+    urlencoded.append(
+      "redirect_uri",
+      "https://juan518munoz.github.io/ZeppOS-Spotify-Web/"
+    );
     urlencoded.append("client_id", client_id);
     urlencoded.append("client_secret", client_secret);
-    urlencoded.append("refresh_token", refreshToken);
 
     const res = await fetch({
       url: "https://accounts.spotify.com/api/token",
@@ -36,7 +39,45 @@ const refreshBearerToken = async () => {
     });
 
     const { body = {} } = res;
-    const { access_token = "" } = body; //= JSON.parse(body); // body
+    const { access_token = "", refresh_token = "" } = body; //JSON.parse(body); // body
+    settings.settingsStorage.setItem("refreshToken", refresh_token);
+    SPOTIFY_AUTH_TOKEN = access_token;
+  } catch (error) {
+    logger.log(error);
+    logger.log(
+      `AuthToken: ${settings.settingsStorage.getItem("authToken")} 
+      \nRefreshToken:  ${settings.settingsStorage.getItem("refreshToken")}`
+    );
+  }
+};
+
+const refreshBearerToken = async () => {
+  try {
+    let urlencoded = new URLSearchParams();
+    urlencoded.append("grant_type", "refresh_token");
+    urlencoded.append("client_id", client_id);
+    urlencoded.append("client_secret", client_secret);
+    urlencoded.append(
+      "refresh_token",
+      settings.settingsStorage.getItem("refreshToken")
+    );
+
+    const res = await fetch({
+      url: "https://accounts.spotify.com/api/token",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: urlencoded.toString(),
+    });
+    const { status } = res;
+    if (status == 400) {
+      await getInitialToken();
+      return await refreshBearerToken();
+    }
+
+    const { body = {} } = res;
+    const { access_token = "" } = body; //JSON.parse(body); // body
 
     SPOTIFY_AUTH_TOKEN = access_token;
   } catch (error) {
@@ -56,7 +97,7 @@ const isSongLiked = async (currID) => {
     });
 
     const { body } = res;
-    const { items = [] } = body; //= JSON.parse(body); // body
+    const { items = [] } = body; //JSON.parse(body); // body
     items.forEach((item) => {
       const { track: { id = "" } = {} } = item;
       if (id == currID) isLiked = true;
@@ -66,6 +107,49 @@ const isSongLiked = async (currID) => {
   } catch (error) {
     return false;
   }
+};
+
+const getQueue = async (ctx) => {
+  try {
+    const res = await fetch({
+      url: `https://api.spotify.com/v1/me/player/queue`,
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${SPOTIFY_AUTH_TOKEN}`,
+      },
+    });
+    const { status } = res;
+    if (status != 200) throw "Error";
+
+    let q = [];
+    const { body = {} } = res;
+    const { queue } = body; //JSON.parse(body); // body
+    queue.forEach((item) => {
+      const { name = "" } = item;
+      q.push(name);
+    });
+
+    return q;
+  } catch (error) {
+    return [];
+  }
+};
+
+const tracks = async (ctx, func = "", curSongId = "") => {
+  try {
+    const res = await fetch({
+      url: `https://api.spotify.com/v1/me/tracks?ids=${curSongId}`,
+      method: http[func],
+      headers: {
+        Authorization: `Bearer ${SPOTIFY_AUTH_TOKEN}`,
+      },
+    });
+    const { status } = res;
+    if (status == 400 || status == 401) {
+      await refreshBearerToken();
+      return await player(ctx);
+    }
+  } catch (error) {}
 };
 
 const player = async (ctx, func = "", args = "") => {
@@ -80,7 +164,20 @@ const player = async (ctx, func = "", args = "") => {
     const { status } = res;
     if (status == 400 || status == 401) {
       await refreshBearerToken();
-      return await player(ctx);
+      //return await player(ctx);
+      ctx.response({
+        data: {
+          songName: name,
+          artistNames: artistNames,
+          isPlaying: false,
+          isLiked: false,
+          isShuffled: false,
+          progress: 0,
+          songId: "id",
+          queue: [],
+        },
+      });
+      return;
     }
     if (func != "") return await player(ctx);
     else if (status == 204) {
@@ -100,7 +197,7 @@ const player = async (ctx, func = "", args = "") => {
       progress_ms = 0,
       item: { name = "", artists = [], duration_ms = 0, id = "" } = {},
       is_playing = false,
-    } = body; //= JSON.parse(body); // body
+    } = body; //JSON.parse(body); // body
 
     let artistNames = artists.map((artist) => artist.name).join(", ");
     const isLiked = await isSongLiked(id);
@@ -125,49 +222,6 @@ const player = async (ctx, func = "", args = "") => {
         artistNames: "make sure a device is streaming",
       },
     });
-  }
-};
-
-const tracks = async (ctx, func = "", curSongId = "") => {
-  try {
-    const res = await fetch({
-      url: `https://api.spotify.com/v1/me/tracks?ids=${curSongId}`,
-      method: http[func],
-      headers: {
-        Authorization: `Bearer ${SPOTIFY_AUTH_TOKEN}`,
-      },
-    });
-    const { status } = res;
-    if (status == 400 || status == 401) {
-      await refreshBearerToken();
-      return await player(ctx);
-    }
-  } catch (error) {}
-};
-
-const getQueue = async (ctx) => {
-  try {
-    const res = await fetch({
-      url: `https://api.spotify.com/v1/me/player/queue`,
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${SPOTIFY_AUTH_TOKEN}`,
-      },
-    });
-    const { status } = res;
-    if (status != 200) throw "Error";
-
-    let q = [];
-    const { body = {} } = res;
-    const { queue } = body; //= JSON.parse(body); // body
-    queue.forEach((item) => {
-      const { name = "" } = item;
-      q.push(name);
-    });
-
-    return q;
-  } catch (error) {
-    return [];
   }
 };
 
