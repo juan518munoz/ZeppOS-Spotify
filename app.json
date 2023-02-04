@@ -2,14 +2,14 @@
   "configVersion": "v2",
   "app": {
     "appId": 27280,
-    "appName": "Spotify",
+    "appName": "Spotify for ZeppOS",
     "appType": "app",
     "version": {
       "code": 1,
       "name": "1.0.1"
     },
     "icon": "icon.png",
-    "vender": "zepp",
+    "vender": "juan518munoz",
     "description": "Spotify console player"
   },
   "permissions": [],
@@ -21,7 +21,7 @@
     }
   },
   "targets": {
-    "common": {
+    "band7": {
       "module": {
         "page": {
           "pages": ["pages/index", "pages/playlists"]
@@ -44,6 +44,30 @@
         }
       ],
       "designWidth": 194
+    },
+    "gts-mini": {
+      "module": {
+        "page": {
+          "pages": ["pages/index", "pages/playlists"]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "gts-4-mini",
+          "deviceSource": 246
+        },
+        {
+          "name": "gts-4-mini-w",
+          "deviceSource": 247
+        }
+      ],
+      "designWidth": 336
     }
   },
   "i18n": {

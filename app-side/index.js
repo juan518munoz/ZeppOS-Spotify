@@ -17,40 +17,6 @@ const http = {
   shuffle: "PUT",
 };
 
-const getInitialToken = async () => {
-  try {
-    let urlencoded = new URLSearchParams();
-    urlencoded.append("grant_type", "authorization_code");
-    urlencoded.append("code", settings.settingsStorage.getItem("authToken"));
-    urlencoded.append(
-      "redirect_uri",
-      "https://juan518munoz.github.io/ZeppOS-Spotify-Web/"
-    );
-    urlencoded.append("client_id", client_id);
-    urlencoded.append("client_secret", client_secret);
-
-    const res = await fetch({
-      url: "https://accounts.spotify.com/api/token",
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: urlencoded.toString(),
-    });
-
-    const { body = {} } = res;
-    const { access_token = "", refresh_token = "" } = body; //JSON.parse(body); // body
-    settings.settingsStorage.setItem("refreshToken", refresh_token);
-    SPOTIFY_AUTH_TOKEN = access_token;
-  } catch (error) {
-    logger.log(error);
-    logger.log(
-      `AuthToken: ${settings.settingsStorage.getItem("authToken")} 
-      \nRefreshToken:  ${settings.settingsStorage.getItem("refreshToken")}`
-    );
-  }
-};
-
 const refreshBearerToken = async () => {
   try {
     let urlencoded = new URLSearchParams();
@@ -72,8 +38,7 @@ const refreshBearerToken = async () => {
     });
     const { status } = res;
     if (status == 400) {
-      await getInitialToken();
-      return await refreshBearerToken();
+      return;
     }
 
     const { body = {} } = res;
@@ -164,7 +129,6 @@ const player = async (ctx, func = "", args = "") => {
     const { status } = res;
     if (status == 400 || status == 401) {
       await refreshBearerToken();
-      //return await player(ctx);
       ctx.response({
         data: {
           songName: name,
@@ -230,6 +194,25 @@ AppSideService({
     messageBuilder.listen(() => {});
 
     messageBuilder.on("request", (ctx) => {
+      if (
+        settings.settingsStorage.getItem("refreshToken") == null ||
+        settings.settingsStorage.getItem("refreshToken") == ""
+      ) {
+        ctx.response({
+          data: {
+            songName: "refresh token not set",
+            artistNames: "set refresh token on the Zepp app",
+            isPlaying: false,
+            isLiked: false,
+            isShuffled: false,
+            progress: 0,
+            songId: "id",
+            queue: [],
+          },
+        });
+        return;
+      }
+
       const jsonRpc = messageBuilder.buf2Json(ctx.request.payload);
       if (jsonRpc.func == "player") {
         return player(ctx, jsonRpc.method, jsonRpc.args);
@@ -240,7 +223,5 @@ AppSideService({
 
   onRun() {},
 
-  onDestroy() {
-    SPOTIFY_AUTH_TOKEN = "";
-  },
+  onDestroy() {},
 });

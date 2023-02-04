@@ -1,7 +1,7 @@
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../utils/config/device";
 
 const vibrate = hmSensor.createSensor(hmSensor.id.VIBRATE);
-const logger = DeviceRuntimeCore.HmLogger.getLogger("fetch_api");
+const logger = DeviceRuntimeCore.HmLogger.getLogger("spotify-for-zepp");
 const { messageBuilder } = getApp()._options.globalData;
 
 const QUEUE_LENGHT = 15;
@@ -17,7 +17,7 @@ let likeState = "";
 let curSongId = "";
 let shuffleBtn;
 let shuffleState = "";
-let curQueue = []; // references objects { name, id }
+let curQueue = []; // references strings
 let queueList = []; // references widgets
 
 Page({
@@ -26,13 +26,13 @@ Page({
     hmUI.updateStatusBarTitle("Spotify");
     this.refresh(this.player);
     hmApp.setScreenKeep(true);
-    hmSetting.setBrightScreen(2000);
+    hmSetting.setBrightScreen(180);
     const isVertical = true;
     hmUI.setScrollView(false, DEVICE_HEIGHT, 4, isVertical);
 
     song = hmUI.createWidget(hmUI.widget.TEXT, {
       x: 0,
-      y: px(30),
+      y: px(DEVICE_HEIGHT * 0.1),
       w: px(DEVICE_WIDTH),
       h: px(50),
       color: 0xffffff,
@@ -45,7 +45,7 @@ Page({
 
     artist = hmUI.createWidget(hmUI.widget.TEXT, {
       x: 0,
-      y: px(80),
+      y: px(DEVICE_HEIGHT * 0.22),
       w: px(DEVICE_WIDTH),
       h: px(30),
       color: 0xb3b3b3,
@@ -69,7 +69,7 @@ Page({
     });
 
     const nextBtn = hmUI.createWidget(hmUI.widget.IMG, {
-      x: DEVICE_WIDTH / 2 + px(48),
+      x: px(DEVICE_WIDTH * 0.95 - 48),
       y: px(200),
       src: "next.png",
     });
@@ -81,7 +81,7 @@ Page({
     });
 
     const previousBtn = hmUI.createWidget(hmUI.widget.IMG, {
-      x: DEVICE_WIDTH / 2 - px(48) - px(48),
+      x: px(DEVICE_WIDTH * 0.05),
       y: px(200),
       src: "previous.png",
     });
@@ -94,16 +94,16 @@ Page({
 
     hmUI.createWidget(hmUI.widget.FILL_RECT, {
       x: px(8),
-      y: DEVICE_HEIGHT / 2 - px(24),
-      w: DEVICE_WIDTH - px(8),
+      y: px(DEVICE_HEIGHT / 2 - 24),
+      w: px(DEVICE_WIDTH - 8),
       h: px(4),
       radius: px(2),
       color: 0x5e5e5e,
     });
     progressBar = hmUI.createWidget(hmUI.widget.FILL_RECT, {
       x: px(8),
-      y: DEVICE_HEIGHT / 2 - px(24),
-      w: 0,
+      y: px(DEVICE_HEIGHT / 2 - 24),
+      w: px(0),
       h: px(4),
       radius: px(2),
       color: 0x1db954,
@@ -199,7 +199,7 @@ Page({
         isShuffled ? (shuffleState = "shuffle") : (shuffleState = "noShuffle");
 
         progressBar.setProperty(hmUI.prop.MORE, {
-          w: DEVICE_WIDTH * progress - px(8),
+          w: px(DEVICE_WIDTH * progress - 8),
         });
 
         curSongId = songId;

@@ -33,6 +33,7 @@ AppSettingsPage({
         if (refresh_token != "")
           props.settingsStorage.setItem("refreshToken", refresh_token);
         else props.settingsStorage.setItem("refreshToken", error_description);
+        console.log(props.settingsStorage.getItem("refreshToken"));
       })
       .catch((error) => {
         console.log(error);
