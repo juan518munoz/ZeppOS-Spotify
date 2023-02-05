@@ -19,6 +19,10 @@ Beta testing open for ZeppOS v1.0, comment on the issue thread to join!
 
 ## Changes
 
+#### V5 changes
+
+https://user-images.githubusercontent.com/62400508/216798163-e95ec399-c52e-440b-a338-2267b174abd9.mp4
+
 #### V4 changes
 
 https://user-images.githubusercontent.com/62400508/216742739-8b5723d3-4cca-4a22-a19d-54c9d2d02815.mp4
