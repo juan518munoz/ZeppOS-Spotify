@@ -1,5 +1,4 @@
-const client_id = "";
-const client_secret = "";
+import { client_id, client_secret } from "../utils/config/client";
 
 AppSettingsPage({
   getRefreshToken(props) {

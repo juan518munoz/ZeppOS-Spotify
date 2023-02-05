@@ -24,7 +24,7 @@ let queueList = []; // references widgets
 Page({
   state: {},
   build() {
-    hmUI.updateStatusBarTitle("Spotify");
+    hmUI.updateStatusBarTitle("player");
     this.refresh(this.player);
     hmApp.setScreenKeep(true);
     hmSetting.setBrightScreen(180);
@@ -32,29 +32,11 @@ Page({
     hmUI.setScrollView(false, DEVICE_HEIGHT, 4, isVertical);
 
     song = hmUI.createWidget(hmUI.widget.TEXT, {
-      x: 0,
-      y: px(DEVICE_HEIGHT * 0.12),
-      w: px(DEVICE_WIDTH),
-      h: px(50),
-      color: 0xffffff,
-      text_size: px(36),
-      align_h: hmUI.align.CENTER_H,
-      align_v: hmUI.align.CENTER_V,
-      text_style: hmUI.text_style.NONE,
-      text: "",
+      ...styles.SONG,
     });
 
     artist = hmUI.createWidget(hmUI.widget.TEXT, {
-      x: 0,
-      y: px(DEVICE_HEIGHT * 0.24),
-      w: px(DEVICE_WIDTH),
-      h: px(30),
-      color: 0xb3b3b3,
-      text_size: px(24),
-      align_h: hmUI.align.CENTER_H,
-      align_v: hmUI.align.CENTER_V,
-      text_style: hmUI.text_style.NONE,
-      text: "",
+      ...styles.ARTIST,
     });
 
     playBtn = hmUI.createWidget(hmUI.widget.IMG, {

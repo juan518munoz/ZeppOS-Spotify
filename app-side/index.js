@@ -1,9 +1,7 @@
+import { client_id, client_secret } from "../utils/config/client";
 import { MessageBuilder } from "../shared/message";
 
 const messageBuilder = new MessageBuilder();
-
-const client_id = "";
-const client_secret = "";
 let SPOTIFY_AUTH_TOKEN = "";
 
 const http = {

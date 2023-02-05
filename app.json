@@ -65,7 +65,7 @@
       "module": {
         "page": {
           "pages": [
-            "pages/home/index",
+            "pages/home/index.page",
             "pages/playlists/playlists.page",
             "pages/playlist/playlist.page"
           ]
@@ -93,7 +93,7 @@
       "module": {
         "page": {
           "pages": [
-            "pages/home/index",
+            "pages/home/index.page",
             "pages/playlists/playlists.page",
             "pages/playlist/playlist.page"
           ]
@@ -121,7 +121,7 @@
       "module": {
         "page": {
           "pages": [
-            "pages/home/index",
+            "pages/home/index.page",
             "pages/playlists/playlists.page",
             "pages/playlist/playlist.page"
           ]
