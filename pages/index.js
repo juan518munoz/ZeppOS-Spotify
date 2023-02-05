@@ -159,7 +159,13 @@ Page({
     hmApp.registerGestureEvent((event) => {
       switch (event) {
         case hmApp.gesture.LEFT:
-          hmApp.gotoPage({ url: "pages/playlists", param: "..." });
+          hmApp.gotoPage({
+            url: "pages/playlists",
+            param: JSON.stringify({
+              name: "Punchi Punchi",
+              playlistId: "74c6P7otAZ1tACZuyCaj3O",
+            }),
+          });
           break;
         default:
           break;
@@ -255,5 +261,6 @@ Page({
   },
   onDestroy() {
     vibrate && vibrate.stop();
+    hmSetting.setBrightScreenCancel();
   },
 });

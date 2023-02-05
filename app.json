@@ -24,7 +24,7 @@
     "band7": {
       "module": {
         "page": {
-          "pages": ["pages/index", "pages/playlists"]
+          "pages": ["pages/index", "pages/playlists", "pages/playlist"]
         },
         "app-side": {
           "path": "app-side/index"
@@ -48,7 +48,7 @@
     "gts4mini": {
       "module": {
         "page": {
-          "pages": ["pages/index", "pages/playlists"]
+          "pages": ["pages/index", "pages/playlists", "pages/playlist"]
         },
         "app-side": {
           "path": "app-side/index"
@@ -72,7 +72,7 @@
     "gts3": {
       "module": {
         "page": {
-          "pages": ["pages/index", "pages/playlists"]
+          "pages": ["pages/index", "pages/playlists", "pages/playlist"]
         },
         "app-side": {
           "path": "app-side/index"
@@ -96,7 +96,7 @@
     "gtr3": {
       "module": {
         "page": {
-          "pages": ["pages/index", "pages/playlists"]
+          "pages": ["pages/index", "pages/playlists", "pages/playlist"]
         },
         "app-side": {
           "path": "app-side/index"

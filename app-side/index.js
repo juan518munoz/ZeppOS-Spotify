@@ -7,11 +7,11 @@ const client_secret = "";
 let SPOTIFY_AUTH_TOKEN = "";
 
 const http = {
+  "": "GET",
   play: "PUT",
   pause: "PUT",
   next: "POST",
   previous: "POST",
-  "": "GET",
   liked: "PUT",
   notLiked: "DELETE",
   shuffle: "PUT",
@@ -97,6 +97,84 @@ const getQueue = async (ctx) => {
     return q;
   } catch (error) {
     return [];
+  }
+};
+
+const getAllPlaylists = async (ctx) => {
+  try {
+    const res = await fetch({
+      url: `https://api.spotify.com/v1/me/playlists`,
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${SPOTIFY_AUTH_TOKEN}`,
+      },
+    });
+    const { status } = res;
+    if (status >= 400) return;
+
+    const { body = {} } = res;
+    const { items = [] } = body; //JSON.parse(body); // body
+
+    let playLists = [];
+    items.forEach((item) => {
+      const { name = "", id = "" } = item;
+      playLists.push({ name, id });
+    });
+    ctx.response({
+      data: {
+        playLists: playLists.slice(0, 6),
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const startPlaylist = async (playlistId = "") => {
+  const body = {
+    context_uri: `spotify:playlist:${playlistId}`,
+  };
+  try {
+    await fetch({
+      url: `https://api.spotify.com/v1/me/player/play`,
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${SPOTIFY_AUTH_TOKEN}`,
+      },
+      body: JSON.stringify(body),
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const playlist = async (ctx, playlistId = "", func = "") => {
+  try {
+    const res = await fetch({
+      url: `https://api.spotify.com/v1/playlists/${playlistId}/${func}`,
+      method: http[func],
+      headers: {
+        Authorization: `Bearer ${SPOTIFY_AUTH_TOKEN}`,
+      },
+    });
+    const { status } = res;
+    if (status >= 400) return;
+
+    const { body = {} } = res;
+    const { tracks: { items = [] } = {} } = body; //JSON.parse(body); // body
+
+    let songList = [];
+    items.forEach((item) => {
+      const { track: { name = "" } = {} } = item;
+      songList.push(name);
+    });
+    ctx.response({
+      data: {
+        songList: songList,
+      },
+    });
+  } catch (error) {
+    console.log(error);
   }
 };
 
@@ -216,8 +294,15 @@ AppSideService({
       const jsonRpc = messageBuilder.buf2Json(ctx.request.payload);
       if (jsonRpc.func == "player") {
         return player(ctx, jsonRpc.method, jsonRpc.args);
-      } else if (jsonRpc.func == "tracks")
+      } else if (jsonRpc.func == "tracks") {
         return tracks(ctx, jsonRpc.method, jsonRpc.curSongId);
+      } else if (jsonRpc.func == "getAllPlaylists") {
+        return getAllPlaylists(ctx);
+      } else if (jsonRpc.func == "playlistInfo") {
+        return playlist(ctx, jsonRpc.playlistId);
+      } else if (jsonRpc.func == "startPlaylist") {
+        return startPlaylist(jsonRpc.playlistId);
+      }
     });
   },
 
