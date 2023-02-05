@@ -44,9 +44,9 @@ const SONG = {
     text: "",
   },
   gtr3: {
-    x: 0,
+    x: px(24),
     y: px(DEVICE_HEIGHT * 0.12),
-    w: px(DEVICE_WIDTH),
+    w: px(DEVICE_WIDTH - 24),
     h: px(60),
     color: 0xffffff,
     text_size: px(48),

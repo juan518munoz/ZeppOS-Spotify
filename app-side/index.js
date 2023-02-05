@@ -40,7 +40,7 @@ const refreshBearerToken = async () => {
     }
 
     const { body = {} } = res;
-    const { access_token = "" } = body; //JSON.parse(body); // body
+    const { access_token = "" } = JSON.parse(body); // body
 
     SPOTIFY_AUTH_TOKEN = access_token;
   } catch (error) {
@@ -60,7 +60,7 @@ const isSongLiked = async (currID) => {
     });
 
     const { body } = res;
-    const { items = [] } = body; //JSON.parse(body); // body
+    const { items = [] } = JSON.parse(body); // body
     items.forEach((item) => {
       const { track: { id = "" } = {} } = item;
       if (id == currID) isLiked = true;
@@ -86,7 +86,7 @@ const getQueue = async (ctx) => {
 
     let q = [];
     const { body = {} } = res;
-    const { queue } = body; //JSON.parse(body); // body
+    const { queue } = JSON.parse(body); // body
     queue.forEach((item) => {
       const { name = "" } = item;
       q.push(name);
@@ -111,7 +111,7 @@ const getAllPlaylists = async (ctx) => {
     if (status >= 400) return;
 
     const { body = {} } = res;
-    const { items = [] } = body; //JSON.parse(body); // body
+    const { items = [] } = JSON.parse(body); // body
 
     let playLists = [];
     items.forEach((item) => {
@@ -159,7 +159,7 @@ const playlist = async (ctx, playlistId = "", func = "") => {
     if (status >= 400) return;
 
     const { body = {} } = res;
-    const { tracks: { items = [] } = {} } = body; //JSON.parse(body); // body
+    const { tracks: { items = [] } = {} } = JSON.parse(body); // body
 
     let songList = [];
     items.forEach((item) => {
@@ -237,7 +237,7 @@ const player = async (ctx, func = "", args = "") => {
       progress_ms = 0,
       item: { name = "", artists = [], duration_ms = 0, id = "" } = {},
       is_playing = false,
-    } = body; //JSON.parse(body); // body
+    } = JSON.parse(body); // body
 
     let artistNames = artists.map((artist) => artist.name).join(", ");
     const isLiked = await isSongLiked(id);
