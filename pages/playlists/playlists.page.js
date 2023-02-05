@@ -1,4 +1,4 @@
-import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../utils/config/device";
+import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../utils/config/device";
 const { messageBuilder } = getApp()._options.globalData;
 
 Page({
@@ -34,7 +34,7 @@ Page({
 
           widget.addEventListener(hmUI.event.CLICK_DOWN, () => {
             hmApp.gotoPage({
-              url: "pages/playlist",
+              url: "pages/playlist/playlist.page",
               param: JSON.stringify({
                 name: name,
                 playlistId: id,

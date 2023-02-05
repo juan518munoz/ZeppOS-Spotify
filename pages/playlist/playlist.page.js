@@ -1,4 +1,4 @@
-import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../utils/config/device";
+import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../utils/config/device";
 
 const { messageBuilder } = getApp()._options.globalData;
 const vibrate = hmSensor.createSensor(hmSensor.id.VIBRATE);

@@ -1,12 +1,13 @@
-import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../utils/config/device";
+import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../utils/config/device";
+import { getStyles } from "./index.style";
 
+const styles = getStyles(hmSetting.getDeviceInfo().deviceName);
 const vibrate = hmSensor.createSensor(hmSensor.id.VIBRATE);
 const logger = DeviceRuntimeCore.HmLogger.getLogger("spotify-for-zepp");
 const { messageBuilder } = getApp()._options.globalData;
-
 const QUEUE_LENGHT = 15;
 
-// Empty initializations
+// Empty initializations - used for references
 let song;
 let artist;
 let playBtn;
@@ -57,9 +58,7 @@ Page({
     });
 
     playBtn = hmUI.createWidget(hmUI.widget.IMG, {
-      x: DEVICE_WIDTH / 2 - px(24),
-      y: px(DEVICE_HEIGHT * 0.55),
-      src: `${playState}.png`,
+      ...styles.PLAY_BUTTON,
     });
     playBtn.addEventListener(hmUI.event.CLICK_DOWN, () => {
       vibrate.stop();
@@ -69,9 +68,7 @@ Page({
     });
 
     const nextBtn = hmUI.createWidget(hmUI.widget.IMG, {
-      x: px(DEVICE_WIDTH * 0.95 - 48),
-      y: px(DEVICE_HEIGHT * 0.55),
-      src: "next.png",
+      ...styles.NEXT_BUTTON,
     });
     nextBtn.addEventListener(hmUI.event.CLICK_DOWN, () => {
       vibrate.stop();
@@ -81,9 +78,7 @@ Page({
     });
 
     const previousBtn = hmUI.createWidget(hmUI.widget.IMG, {
-      x: px(DEVICE_WIDTH * 0.05),
-      y: px(DEVICE_HEIGHT * 0.55),
-      src: "previous.png",
+      ...styles.PREV_BUTTON,
     });
     previousBtn.addEventListener(hmUI.event.CLICK_DOWN, () => {
       vibrate.stop();
@@ -93,26 +88,14 @@ Page({
     });
 
     hmUI.createWidget(hmUI.widget.FILL_RECT, {
-      x: px(8),
-      y: px(DEVICE_HEIGHT * 0.4),
-      w: px(DEVICE_WIDTH - 8),
-      h: px(4),
-      radius: px(2),
-      color: 0x5e5e5e,
+      ...styles.PROGRESS_BAR_BKG,
     });
     progressBar = hmUI.createWidget(hmUI.widget.FILL_RECT, {
-      x: px(8),
-      y: px(DEVICE_HEIGHT * 0.4),
-      w: px(0),
-      h: px(4),
-      radius: px(2),
-      color: 0x1db954,
+      ...styles.PROGRESS_BAR,
     });
 
     likeBtn = hmUI.createWidget(hmUI.widget.IMG, {
-      x: DEVICE_WIDTH / 2 - px(68),
-      y: DEVICE_HEIGHT - px(78),
-      src: `${likeState}.png`,
+      ...styles.LIKE_BUTTON,
     });
     likeBtn.addEventListener(hmUI.event.CLICK_DOWN, () => {
       vibrate.stop();
@@ -122,9 +105,7 @@ Page({
     });
 
     shuffleBtn = hmUI.createWidget(hmUI.widget.IMG, {
-      x: DEVICE_WIDTH / 2 + px(20),
-      y: DEVICE_HEIGHT - px(74),
-      src: `${shuffleState}.png`,
+      ...styles.SHUFFLE_BUTTON,
     });
     shuffleBtn.addEventListener(hmUI.event.CLICK_DOWN, () => {
       vibrate.stop();
@@ -138,16 +119,8 @@ Page({
     // Queue
     for (let i = 0; i <= QUEUE_LENGHT; i++) {
       let queuedSong = hmUI.createWidget(hmUI.widget.TEXT, {
-        x: 0,
         y: px(DEVICE_HEIGHT + 70 * (i + 1)),
-        w: px(DEVICE_WIDTH),
-        h: px(30),
-        color: 0xffffff,
-        text_size: px(24),
-        align_h: hmUI.align.LEFT,
-        align_v: hmUI.align.CENTER_V,
-        text_style: hmUI.text_style.ELLIPSIS,
-        text: "",
+        ...styles.QUEUED_SONG,
       });
       queuedSong.addEventListener(hmUI.event.CLICK_DOWN, () => {
         // unreliable
@@ -159,13 +132,7 @@ Page({
     hmApp.registerGestureEvent((event) => {
       switch (event) {
         case hmApp.gesture.LEFT:
-          hmApp.gotoPage({
-            url: "pages/playlists",
-            param: JSON.stringify({
-              name: "Punchi Punchi",
-              playlistId: "74c6P7otAZ1tACZuyCaj3O",
-            }),
-          });
+          hmApp.gotoPage({ url: "pages/playlists/playlists.page" });
           break;
         default:
           break;

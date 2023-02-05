@@ -1,10 +1,8 @@
 import "./shared/device-polyfill";
 import { MessageBuilder } from "./shared/message";
-import LocalStorage from "./utils/storage";
 
-const appId = 27280;
+const appId = 1017560;
 const messageBuilder = new MessageBuilder({ appId });
-const fileName = "test.txt";
 
 App({
   globalData: {

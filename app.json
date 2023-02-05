@@ -1,7 +1,7 @@
 {
   "configVersion": "v2",
   "app": {
-    "appId": 27280,
+    "appId": 1017560,
     "appName": "Spotify for ZeppOS",
     "appType": "app",
     "version": {
@@ -24,7 +24,11 @@
     "band7": {
       "module": {
         "page": {
-          "pages": ["pages/index", "pages/playlists", "pages/playlist"]
+          "pages": [
+            "pages/home/index.page",
+            "pages/playlists/playlists.page",
+            "pages/playlist/playlist.page"
+          ]
         },
         "app-side": {
           "path": "app-side/index"
@@ -48,7 +52,11 @@
     "gts4mini": {
       "module": {
         "page": {
-          "pages": ["pages/index", "pages/playlists", "pages/playlist"]
+          "pages": [
+            "pages/home/index",
+            "pages/playlists/playlists.page",
+            "pages/playlist/playlist.page"
+          ]
         },
         "app-side": {
           "path": "app-side/index"
@@ -72,7 +80,11 @@
     "gts3": {
       "module": {
         "page": {
-          "pages": ["pages/index", "pages/playlists", "pages/playlist"]
+          "pages": [
+            "pages/home/index",
+            "pages/playlists/playlists.page",
+            "pages/playlist/playlist.page"
+          ]
         },
         "app-side": {
           "path": "app-side/index"
@@ -96,7 +108,11 @@
     "gtr3": {
       "module": {
         "page": {
-          "pages": ["pages/index", "pages/playlists", "pages/playlist"]
+          "pages": [
+            "pages/home/index",
+            "pages/playlists/playlists.page",
+            "pages/playlist/playlist.page"
+          ]
         },
         "app-side": {
           "path": "app-side/index"
