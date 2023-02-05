@@ -8,6 +8,8 @@ Beta testing open for ZeppOS v1.0, comment on the issue thread to join!
 #### Amazfit band 7
 ![zepp_screenshot_1675479736150](https://user-images.githubusercontent.com/62400508/216743641-9468b70a-6b8e-46b1-8d16-8ed2307fe518.png)
 ![zepp_screenshot_1675479678545](https://user-images.githubusercontent.com/62400508/216743640-e1b00a01-0a8b-4b70-b727-c0c93f14cf63.png)
+![zepp_screenshot_1675563692342](https://user-images.githubusercontent.com/62400508/216798235-8dc76864-55b1-468c-974e-82322bd34344.png)
+![zepp_screenshot_1675563705236](https://user-images.githubusercontent.com/62400508/216798236-98351175-47ee-4939-9e5f-69903d6ab8cb.png)
 
 #### Amazfit Gts 4 mini
 ![zepp_screenshot_1675521311094](https://user-images.githubusercontent.com/62400508/216773602-826c0f68-64ff-4389-86a1-ae8f8419e961.png)
@@ -18,6 +20,10 @@ Beta testing open for ZeppOS v1.0, comment on the issue thread to join!
 ![gts3q](https://user-images.githubusercontent.com/62400508/216782647-7445e717-4a09-4b9c-8f5a-a10b38775cee.png)
 
 ## Changes
+
+#### V5 changes
+
+https://user-images.githubusercontent.com/62400508/216798163-e95ec399-c52e-440b-a338-2267b174abd9.mp4
 
 #### V4 changes
 
