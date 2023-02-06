@@ -1,4 +1,7 @@
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../utils/config/device";
+import { getStyles } from "./library.style";
+
+const styles = getStyles(hmSetting.getDeviceInfo().deviceName);
 const { messageBuilder } = getApp()._options.globalData;
 
 Page({
@@ -6,7 +9,13 @@ Page({
   build() {
     const isVertical = true;
     hmUI.setScrollView(true, DEVICE_HEIGHT, 2, isVertical);
-    hmUI.updateStatusBarTitle("Playlists");
+    hmUI.updateStatusBarTitle("Library");
+
+    hmUI.createWidget(hmUI.widget.TEXT, {
+      ...styles.LIBRARY_HEADER,
+      text: "Playlists",
+    });
+
     this.getAllPlaylists();
   },
   getAllPlaylists() {
@@ -20,19 +29,17 @@ Page({
         playLists.forEach((playList, i) => {
           const { name = "", id = "" } = playList;
           const widget = hmUI.createWidget(hmUI.widget.TEXT, {
-            x: 0,
-            y: px(DEVICE_HEIGHT * 0.35 + 60 * i),
-            w: px(DEVICE_WIDTH),
-            h: px(36),
-            color: 0xffffff,
-            text_size: px(24),
-            align_h: hmUI.align.LEFT,
-            align_v: hmUI.align.CENTER_V,
-            text_style: hmUI.text_style.ELLIPSIS,
+            y: px(DEVICE_HEIGHT * 0.36 + 60 * i),
             text: name,
+            ...styles.TITLE,
           });
 
-          widget.addEventListener(hmUI.event.CLICK_DOWN, () => {
+          const img = hmUI.createWidget(hmUI.widget.IMG, {
+            x: DEVICE_WIDTH - 36,
+            y: px(DEVICE_HEIGHT * 0.36 + 60 * i),
+            src: "arrow.png",
+          });
+          img.addEventListener(hmUI.event.CLICK_DOWN, () => {
             hmApp.gotoPage({
               url: "pages/playlist/playlist.page",
               param: JSON.stringify({

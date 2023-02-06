@@ -1,5 +1,7 @@
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../utils/config/device";
+import { getStyles } from "./playlist.style";
 
+const styles = getStyles(hmSetting.getDeviceInfo().deviceName);
 const { messageBuilder } = getApp()._options.globalData;
 const vibrate = hmSensor.createSensor(hmSensor.id.VIBRATE);
 
@@ -17,13 +19,11 @@ Page({
   },
   build() {
     hmUI.updateStatusBarTitle(this.state.name);
-    const isVertical = true;
-    hmUI.setScrollView(true, DEVICE_HEIGHT, 12, isVertical);
+    //const isVertical = true;
+    //hmUI.setScrollView(true, DEVICE_HEIGHT, 12, isVertical);
 
     const playBtn = hmUI.createWidget(hmUI.widget.IMG, {
-      x: DEVICE_WIDTH / 2 - px(32),
-      y: px(DEVICE_HEIGHT * 0.15),
-      src: `playlistPlay.png`,
+      ...styles.PLAY_BUTTON,
     });
     playBtn.addEventListener(hmUI.event.CLICK_DOWN, () => {
       vibrate.stop();
@@ -33,15 +33,7 @@ Page({
     });
 
     hmUI.createWidget(hmUI.widget.TEXT, {
-      x: 0,
-      y: px(DEVICE_HEIGHT * 0.35),
-      w: px(DEVICE_WIDTH),
-      h: px(48),
-      color: 0x1fdf64,
-      text_size: px(32),
-      align_h: hmUI.align.CENTER_H,
-      align_v: hmUI.align.CENTER_V,
-      text_style: hmUI.text_style.NONE,
+      ...styles.PLAYLIST_TITLE,
       text: this.state.name,
     });
 
@@ -56,18 +48,18 @@ Page({
       .then((data) => {
         const { songList = [] } = data;
 
-        songList.forEach((song, i) => {
+        songList.forEach((track, i) => {
+          const { name = "", artistNames = "" } = track;
           hmUI.createWidget(hmUI.widget.TEXT, {
-            x: 0,
-            y: px(DEVICE_HEIGHT * 0.5 + 40 * i),
-            w: px(DEVICE_WIDTH),
-            h: px(24),
-            color: 0xffffff,
-            text_size: px(20),
-            align_h: hmUI.align.LEFT,
-            align_v: hmUI.align.CENTER_V,
-            text_style: hmUI.text_style.ELLIPSIS,
-            text: song,
+            ...styles.SONG,
+            y: px(DEVICE_HEIGHT * 0.53 + 55 * i),
+            text: name,
+          });
+
+          hmUI.createWidget(hmUI.widget.TEXT, {
+            ...styles.ARTIST,
+            y: px(DEVICE_HEIGHT * 0.6 + 55 * i),
+            text: artistNames,
           });
         });
       });

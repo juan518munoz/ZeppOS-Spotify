@@ -27,7 +27,7 @@ Page({
     hmUI.updateStatusBarTitle("player");
     this.refresh(this.player);
     hmApp.setScreenKeep(true);
-    hmSetting.setBrightScreen(180);
+    //hmSetting.setBrightScreen(180); might be causing issues
     const isVertical = true;
     hmUI.setScrollView(false, DEVICE_HEIGHT, 4, isVertical);
 
@@ -114,7 +114,7 @@ Page({
     hmApp.registerGestureEvent((event) => {
       switch (event) {
         case hmApp.gesture.LEFT:
-          hmApp.gotoPage({ url: "pages/playlists/playlists.page" });
+          hmApp.gotoPage({ url: "pages/library/library.page" });
           break;
         default:
           break;
@@ -192,7 +192,7 @@ Page({
       6000,
       function () {
         for (let i = 0; i <= QUEUE_LENGHT; i++) {
-          const name = curQueue[i];
+          const name = curQueue[i] ? curQueue[i] : "";
           queueList[i].setProperty(hmUI.prop.MORE, {
             text: `${i + 1}. ${name}`,
           });

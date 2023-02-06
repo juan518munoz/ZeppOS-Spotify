@@ -193,7 +193,7 @@ const PROGRESS_BAR_BKG = {
   gts3: {
     x: px(8),
     y: px(DEVICE_HEIGHT * 0.4),
-    w: px(DEVICE_WIDTH - 8),
+    w: px(DEVICE_WIDTH - 16),
     h: px(8),
     radius: px(4),
     color: 0x5e5e5e,
@@ -201,7 +201,7 @@ const PROGRESS_BAR_BKG = {
   gtr3: {
     x: px(8),
     y: px(DEVICE_HEIGHT * 0.4),
-    w: px(DEVICE_WIDTH - 8),
+    w: px(DEVICE_WIDTH - 16),
     h: px(8),
     radius: px(4),
     color: 0x5e5e5e,
@@ -373,6 +373,7 @@ export const getStyles = (deviceName) => {
       QUEUED_SONG: QUEUED_SONG.gts3,
     };
   return {
+    // gtr 3
     SONG: SONG.gtr3,
     ARTIST: ARTIST.gtr3,
     PLAY_BUTTON: PLAY_BUTTON.gtr3,

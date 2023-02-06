@@ -13,4 +13,3 @@ selenium-debug.log
 *.ntvs*
 *.njsproj
 *.sln
-utils/config/client.js
