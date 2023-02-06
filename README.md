@@ -6,20 +6,34 @@ Beta testing open for ZeppOS v1.0, comment on the issue thread to join!
 ## Screenshots
 
 #### Amazfit band 7
-![zepp_screenshot_1675479736150](https://user-images.githubusercontent.com/62400508/216743641-9468b70a-6b8e-46b1-8d16-8ed2307fe518.png)
-![zepp_screenshot_1675479678545](https://user-images.githubusercontent.com/62400508/216743640-e1b00a01-0a8b-4b70-b727-c0c93f14cf63.png)
-![zepp_screenshot_1675563692342](https://user-images.githubusercontent.com/62400508/216798235-8dc76864-55b1-468c-974e-82322bd34344.png)
-![zepp_screenshot_1675563705236](https://user-images.githubusercontent.com/62400508/216798236-98351175-47ee-4939-9e5f-69903d6ab8cb.png)
 
-#### Amazfit Gts 4 mini
-![zepp_screenshot_1675521311094](https://user-images.githubusercontent.com/62400508/216773602-826c0f68-64ff-4389-86a1-ae8f8419e961.png)
-![zepp_screenshot_1675521319896](https://user-images.githubusercontent.com/62400508/216773604-b23c096a-b7f2-4b07-b0a1-7c8291193db8.png)
+![player](https://user-images.githubusercontent.com/62400508/216854610-34e33b0f-815b-4127-8d8d-81e2e7f77969.png)
+![library](https://user-images.githubusercontent.com/62400508/216854612-a0e70cc5-4189-4656-987d-3bb5f95c1f59.png)
+![playlist](https://user-images.githubusercontent.com/62400508/216854616-061febee-1826-425c-be6a-ab0e5807f3bd.png)
 
-#### Amazfit Gts 3
-![gts3](https://user-images.githubusercontent.com/62400508/216782643-43428a85-465a-4278-bbb0-dad81ed53af4.png)
-![gts3q](https://user-images.githubusercontent.com/62400508/216782647-7445e717-4a09-4b9c-8f5a-a10b38775cee.png)
+#### Amazfit GTS 3
+
+![player](https://user-images.githubusercontent.com/62400508/216854633-4597bbf3-e8c3-4711-a16f-2a222f5e4703.png)
+![library](https://user-images.githubusercontent.com/62400508/216854638-3f3841b8-7f95-4a83-b912-3cd9b2185184.png)
+![playlist](https://user-images.githubusercontent.com/62400508/216854639-54c5db0b-4476-4808-9392-318fe70bc419.png)
+
+#### Amazfit GTR 3
+
+![player](https://user-images.githubusercontent.com/62400508/216854665-69081548-b4b3-4398-bea0-1fe89646c5f2.png)
+![library](https://user-images.githubusercontent.com/62400508/216854698-8c2ea818-1070-4e43-ac15-1ed3229ea94e.png)
+![playlist](https://user-images.githubusercontent.com/62400508/216854702-7b321878-7884-41e8-be09-ef6418bea089.png)
+
+#### Amazfit GTS 4 mini
+
+![player](https://user-images.githubusercontent.com/62400508/216854731-967dcb84-b12b-497a-befb-0c8751d206c3.png)
+![library](https://user-images.githubusercontent.com/62400508/216854733-e8936b80-2b72-4a19-b97c-541df332fbe9.png)
+![playlist](https://user-images.githubusercontent.com/62400508/216854736-4316a5ab-9111-435a-8a40-a6254a852544.png)
 
 ## Changes
+
+#### V6 changes
+
+Improved UI, seen on screenshots.
 
 #### V5 changes
 
