@@ -1,24 +1,19 @@
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../utils/config/device";
 import { getStyles } from "./index.style";
 
+const { playerControl } = getApp()._options.globalData;
 const styles = getStyles(hmSetting.getDeviceInfo().deviceName);
 const vibrate = hmSensor.createSensor(hmSensor.id.VIBRATE);
 const logger = DeviceRuntimeCore.HmLogger.getLogger("spotify-for-zepp");
-const { messageBuilder } = getApp()._options.globalData;
 const QUEUE_LENGHT = 15;
 
 // Empty initializations - used for references
 let song;
 let artist;
 let playBtn;
-let playState = "";
 let progressBar;
 let likeBtn;
-let likeState = "";
-let curSongId = "";
 let shuffleBtn;
-let shuffleState = "";
-let curQueue = []; // references strings
 let queueList = []; // references widgets
 
 Page({
@@ -41,11 +36,12 @@ Page({
 
     playBtn = hmUI.createWidget(hmUI.widget.IMG, {
       ...styles.PLAY_BUTTON,
+      src: `play.png`,
     });
     playBtn.addEventListener(hmUI.event.CLICK_DOWN, () => {
       vibrate.stop();
       vibrate.scene = 23;
-      playState == "play" ? this.player("pause") : this.player("play");
+      playerControl.play();
       vibrate.start();
     });
 
@@ -55,7 +51,7 @@ Page({
     nextBtn.addEventListener(hmUI.event.CLICK_DOWN, () => {
       vibrate.stop();
       vibrate.scene = 23;
-      this.player("next");
+      playerControl.next();
       vibrate.start();
     });
 
@@ -65,7 +61,7 @@ Page({
     previousBtn.addEventListener(hmUI.event.CLICK_DOWN, () => {
       vibrate.stop();
       vibrate.scene = 23;
-      this.player("previous");
+      playerControl.previous();
       vibrate.start();
     });
 
@@ -82,7 +78,7 @@ Page({
     likeBtn.addEventListener(hmUI.event.CLICK_DOWN, () => {
       vibrate.stop();
       vibrate.scene = 23;
-      likeState == "notLiked" ? this.tracks("liked") : this.tracks("notLiked");
+      playerControl.toggleLike();
       vibrate.start();
     });
 
@@ -92,9 +88,7 @@ Page({
     shuffleBtn.addEventListener(hmUI.event.CLICK_DOWN, () => {
       vibrate.stop();
       vibrate.scene = 23;
-      shuffleState == "shuffle"
-        ? this.player("shuffle", "state=false")
-        : this.player("shuffle", "state=true");
+      playerControl.toggleShuffle();
       vibrate.start();
     });
 
@@ -121,91 +115,42 @@ Page({
       }
     });
   },
-  player(method = "", args = "") {
-    messageBuilder
-      .request({
-        func: "player",
-        args: args,
-        method: method,
-      })
-      .then((data) => {
-        if (method == "") {
-          const {
-            songName = "No content playing",
-            artistNames = "check if any device is streaming",
-            isPlaying = false,
-            isLiked = false,
-            isShuffled = false,
-            progress = 0,
-            songId = "",
-            queue = [],
-          } = data;
+  refresh() {
+    // Refresh data
+    timer.createTimer(150, 10000, () => {
+      playerControl.update();
+    });
 
-          song.setProperty(hmUI.prop.MORE, {
-            text: songName,
-          });
-
-          artist.setProperty(hmUI.prop.MORE, {
-            text: artistNames,
-          });
-
-          isPlaying ? (playState = "play") : (playState = "pause");
-          playBtn.setProperty(hmUI.prop.MORE, { src: `${playState}.png` });
-          isLiked ? (likeState = "liked") : (likeState = "notLiked");
-          isShuffled
-            ? (shuffleState = "shuffle")
-            : (shuffleState = "noShuffle");
-
-          progressBar.setProperty(hmUI.prop.MORE, {
-            w: px(DEVICE_WIDTH * progress - 8),
-          });
-
-          curSongId = songId;
-
-          if (queue.length != 0) curQueue = queue;
-        }
-      });
-  },
-  tracks(method = "") {
-    messageBuilder
-      .request({
-        func: "tracks",
-        method: method,
-        curSongId: curSongId,
-      })
-      .then((data) => {});
-  },
-  refresh(playerFun) {
-    timer.createTimer(
-      0,
-      1500,
-      function () {
-        logger.log("timer callback");
-        playerFun();
-      },
-      { hour: 0, minute: 15, second: 30 }
-    );
-
-    // longer refresh
-    timer.createTimer(
-      0,
-      6000,
-      function () {
-        for (let i = 0; i <= QUEUE_LENGHT; i++) {
-          const name = curQueue[i] ? curQueue[i] : "";
-          queueList[i].setProperty(hmUI.prop.MORE, {
-            text: `${i + 1}. ${name}`,
-          });
-        }
-      },
-      { hour: 0, minute: 15, second: 30 }
-    );
-
-    // shorter refresh
+    // Refresh UI
     timer.createTimer(0, 150, () => {
-      playBtn.setProperty(hmUI.prop.MORE, { src: `${playState}.png` });
-      likeBtn.setProperty(hmUI.prop.MORE, { src: `${likeState}.png` });
-      shuffleBtn.setProperty(hmUI.prop.MORE, { src: `${shuffleState}.png` });
+      song.setProperty(hmUI.prop.MORE, {
+        text: playerControl.song,
+      });
+
+      artist.setProperty(hmUI.prop.MORE, {
+        text: playerControl.artist,
+      });
+      playBtn.setProperty(hmUI.prop.MORE, {
+        src: `${playerControl.playState}.png`,
+      });
+      likeBtn.setProperty(hmUI.prop.MORE, {
+        src: `${playerControl.likeState}.png`,
+      });
+      shuffleBtn.setProperty(hmUI.prop.MORE, {
+        src: `${playerControl.shuffleState}.png`,
+      });
+
+      progressBar.setProperty(hmUI.prop.MORE, {
+        w: px(DEVICE_WIDTH * playerControl.progress - 8),
+      });
+
+      const queue = playerControl.queue;
+      for (let i = 0; i <= QUEUE_LENGHT; i++) {
+        const name = queue[i] ? queue[i] : "";
+        queueList[i].setProperty(hmUI.prop.MORE, {
+          text: `${i + 1}. ${name}`,
+        });
+      }
     });
   },
   onDestroy() {

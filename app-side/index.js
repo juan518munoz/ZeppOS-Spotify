@@ -273,8 +273,9 @@ AppSideService({
 
     messageBuilder.on("request", (ctx) => {
       if (
-        settings.settingsStorage.getItem("refreshToken") == null ||
-        settings.settingsStorage.getItem("refreshToken") == ""
+        (settings.settingsStorage.getItem("refreshToken") == null ||
+          settings.settingsStorage.getItem("refreshToken") == "") &&
+        SPOTIFY_AUTH_TOKEN == ""
       ) {
         ctx.response({
           data: {
