@@ -31,6 +31,14 @@ Beta testing open for ZeppOS v1.0, comment on the issue thread to join!
 
 ## Changes
 
+#### V7 changes
+
+Improved login experience, user no longer needs to input authToken by himself, pending fix: show user data after login.
+
+https://user-images.githubusercontent.com/62400508/217406930-af964fdb-105a-4ddb-9856-397749f633f6.mp4
+
+Code itself was rearranged so it can now use embedded music controls available on the OS, but they are not functional as of now.
+
 #### V6 changes
 
 Improved UI, seen on screenshots.
