@@ -110,7 +110,7 @@ const ARTIST = {
 
 const PLAY_BUTTON = {
   band7: {
-    x: px(DEVICE_WIDTH / 2 - 24),
+    x: px(DEVICE_WIDTH / 2) - px(24),
     y: px(DEVICE_HEIGHT * 0.55),
   },
   gts4mini: {
