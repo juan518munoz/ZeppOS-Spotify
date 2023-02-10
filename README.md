@@ -10,7 +10,7 @@ Beta testing open for ZeppOS v1.0, comment on the issue thread to join!
 
 ## Requirements
 
-* [Node.js](https://www.youtube.com/watch?v=MrJkkG-yt7A&ab_channel=Accountech-OnlineCourse)
+* [Node.js](https://youtu.be/MrJkkG-yt7A?t=23)
 * [ZeusCLI](https://docs.zepp.com/docs/guides/tools/cli/#installing-the-zeus-cli)
 * __Spotify premium account__
 
