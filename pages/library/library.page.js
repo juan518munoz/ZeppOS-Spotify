@@ -7,8 +7,6 @@ const { messageBuilder } = getApp()._options.globalData;
 Page({
   state: {},
   build() {
-    const isVertical = true;
-    hmUI.setScrollView(true, DEVICE_HEIGHT, 2, isVertical);
     hmUI.updateStatusBarTitle("Library");
 
     hmUI.createWidget(hmUI.widget.TEXT, {

@@ -101,7 +101,7 @@ const getQueue = async (ctx) => {
 const getAllPlaylists = async (ctx) => {
   try {
     const res = await fetch({
-      url: `https://api.spotify.com/v1/me/playlists`,
+      url: `https://api.spotify.com/v1/me/playlists?limit=10`,
       method: "GET",
       headers: {
         Authorization: `Bearer ${SPOTIFY_AUTH_TOKEN}`,
@@ -120,7 +120,7 @@ const getAllPlaylists = async (ctx) => {
     });
     ctx.response({
       data: {
-        playLists: playLists.slice(0, 6),
+        playLists: playLists,
       },
     });
   } catch (error) {
@@ -170,7 +170,7 @@ const playlist = async (ctx, playlistId = "", func = "") => {
     });
     ctx.response({
       data: {
-        songList: songList,
+        songList: songList.slice(0, 20),
       },
     });
   } catch (error) {

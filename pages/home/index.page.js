@@ -20,11 +20,15 @@ Page({
   state: {},
   build() {
     hmUI.updateStatusBarTitle("player");
+    hmApp.setLayerY(-DEVICE_HEIGHT);
     this.refresh(this.player);
     hmApp.setScreenKeep(true);
-    //hmSetting.setBrightScreen(180); might be causing issues
     const isVertical = true;
     hmUI.setScrollView(false, DEVICE_HEIGHT, 4, isVertical);
+
+    devices = hmUI.createWidget(hmUI.widget.BUTTON, {
+      ...styles.DEVICES_BUTTON,
+    });
 
     song = hmUI.createWidget(hmUI.widget.TEXT, {
       ...styles.SONG,
@@ -95,7 +99,7 @@ Page({
     // Queue
     for (let i = 0; i <= QUEUE_LENGHT; i++) {
       let queuedSong = hmUI.createWidget(hmUI.widget.TEXT, {
-        y: px(DEVICE_HEIGHT + 70 * (i + 1)),
+        y: px(DEVICE_HEIGHT * 2 + 70 * (i + 1)),
         ...styles.QUEUED_SONG,
       });
       queuedSong.addEventListener(hmUI.event.CLICK_DOWN, () => {

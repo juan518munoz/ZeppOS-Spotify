@@ -21,6 +21,7 @@ export class PlayerControl {
     this.songId = "";
     this.queue = [];
     this.progress = 0;
+    this.devices = [];
   }
 
   connect() {
@@ -45,7 +46,6 @@ export class PlayerControl {
     this.playState = toggle[this.playState];
   }
 
-  // necesita update inmediato
   next() {
     if (this.player.isPlaying) {
       // foo
@@ -59,7 +59,6 @@ export class PlayerControl {
     this.update();
   }
 
-  // necesita update inmediato
   previous() {
     if (this.player.isPlaying) {
       // foo

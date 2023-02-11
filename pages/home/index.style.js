@@ -6,10 +6,84 @@ const {
   deviceName,
 } = deviceInfo;
 
+const controlsStart = DEVICE_HEIGHT;
+const queueStart = DEVICE_HEIGHT * 2;
+
+const DEVICES_BUTTON = {
+  band7: {
+    x: 0,
+    y: (DEVICE_HEIGHT * 1) / 4,
+    w: DEVICE_WIDTH,
+    h: DEVICE_HEIGHT / 2,
+    radius: 12,
+    normal_color: 0x1fdf64,
+    press_color: 0x1fdf64,
+    //w: -1,
+    //h: -1,
+    //normal_src: 'button_normal.png',
+    //press_src: 'button_press.png',
+    text: "devices",
+    click_func: () => {
+      hmApp.gotoPage({ url: "pages/devices/devices.page" });
+    },
+  },
+  gts4mini: {
+    x: 0,
+    y: (DEVICE_HEIGHT * 1) / 4,
+    w: DEVICE_WIDTH,
+    h: DEVICE_HEIGHT / 2,
+    radius: 12,
+    normal_color: 0x1fdf64,
+    press_color: 0x1fdf64,
+    //w: -1,
+    //h: -1,
+    //normal_src: 'button_normal.png',
+    //press_src: 'button_press.png',
+    text: "devices",
+    click_func: () => {
+      hmApp.gotoPage({ url: "pages/devices/devices.page" });
+    },
+  },
+  gts3: {
+    x: 0,
+    y: (DEVICE_HEIGHT * 1) / 4,
+    w: DEVICE_WIDTH,
+    h: DEVICE_HEIGHT / 2,
+    radius: 12,
+    normal_color: 0x1fdf64,
+    press_color: 0x1fdf64,
+    //w: -1,
+    //h: -1,
+    //normal_src: 'button_normal.png',
+    //press_src: 'button_press.png',
+    text: "devices",
+    click_func: () => {
+      hmApp.gotoPage({ url: "pages/devices/devices.page" });
+    },
+  },
+  gtr3: {
+    x: 0,
+    y: (DEVICE_HEIGHT * 1) / 4,
+    w: DEVICE_WIDTH,
+    h: DEVICE_HEIGHT / 2,
+    radius: 12,
+    normal_color: 0x1fdf64,
+    press_color: 0x1fdf64,
+    //w: -1,
+    //h: -1,
+    //normal_src: 'button_normal.png',
+    //press_src: 'button_press.png',
+    text: "devices",
+    click_func: () => {
+      hmApp.gotoPage({ url: "pages/devices/devices.page" });
+    },
+  },
+};
+
 const SONG = {
   band7: {
     x: 0,
-    y: px(DEVICE_HEIGHT * 0.12),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.12),
     w: px(DEVICE_WIDTH),
     h: px(50),
     color: 0xffffff,
@@ -21,7 +95,7 @@ const SONG = {
   },
   gts4mini: {
     x: 0,
-    y: px(DEVICE_HEIGHT * 0.12),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.12),
     w: px(DEVICE_WIDTH),
     h: px(50),
     color: 0xffffff,
@@ -33,7 +107,7 @@ const SONG = {
   },
   gts3: {
     x: 0,
-    y: px(DEVICE_HEIGHT * 0.12),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.12),
     w: px(DEVICE_WIDTH),
     h: px(60),
     color: 0xffffff,
@@ -45,7 +119,7 @@ const SONG = {
   },
   gtr3: {
     x: px(24),
-    y: px(DEVICE_HEIGHT * 0.12),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.12),
     w: px(DEVICE_WIDTH - 24),
     h: px(60),
     color: 0xffffff,
@@ -60,7 +134,7 @@ const SONG = {
 const ARTIST = {
   band7: {
     x: 0,
-    y: px(DEVICE_HEIGHT * 0.24),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.24),
     w: px(DEVICE_WIDTH),
     h: px(30),
     color: 0xb3b3b3,
@@ -72,7 +146,7 @@ const ARTIST = {
   },
   gts4mini: {
     x: 0,
-    y: px(DEVICE_HEIGHT * 0.24),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.24),
     w: px(DEVICE_WIDTH),
     h: px(30),
     color: 0xb3b3b3,
@@ -84,7 +158,7 @@ const ARTIST = {
   },
   gts3: {
     x: 0,
-    y: px(DEVICE_HEIGHT * 0.24),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.24),
     w: px(DEVICE_WIDTH),
     h: px(40),
     color: 0xb3b3b3,
@@ -96,7 +170,7 @@ const ARTIST = {
   },
   gtr3: {
     x: 0,
-    y: px(DEVICE_HEIGHT * 0.24),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.24),
     w: px(DEVICE_WIDTH),
     h: px(40),
     color: 0xb3b3b3,
@@ -111,41 +185,41 @@ const ARTIST = {
 const PLAY_BUTTON = {
   band7: {
     x: px(DEVICE_WIDTH / 2) - px(24),
-    y: px(DEVICE_HEIGHT * 0.55),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.55),
   },
   gts4mini: {
     x: px(DEVICE_WIDTH / 2 - 43),
-    y: px(DEVICE_HEIGHT * 0.5),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.5),
   },
   gts3: {
     x: px(DEVICE_WIDTH / 2 - 47),
-    y: px(DEVICE_HEIGHT * 0.5),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.5),
   },
   gtr3: {
     x: px(DEVICE_WIDTH / 2 - 47),
-    y: px(DEVICE_HEIGHT * 0.5),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.5),
   },
 };
 
 const NEXT_BUTTON = {
   band7: {
     x: px(DEVICE_WIDTH * 0.95 - 48),
-    y: px(DEVICE_HEIGHT * 0.55),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.55),
     src: "next.png",
   },
   gts4mini: {
     x: px(DEVICE_WIDTH * 0.95 - 49),
-    y: px(DEVICE_HEIGHT * 0.55),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.55),
     src: "next.png",
   },
   gts3: {
     x: px(DEVICE_WIDTH * 0.95 - 73),
-    y: px(DEVICE_HEIGHT * 0.5 + 12),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.5 + 12),
     src: "next.png",
   },
   gtr3: {
     x: px(DEVICE_WIDTH * 0.95 - 73),
-    y: px(DEVICE_HEIGHT * 0.5 + 12),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.5 + 12),
     src: "next.png",
   },
 };
@@ -153,22 +227,22 @@ const NEXT_BUTTON = {
 const PREV_BUTTON = {
   band7: {
     x: px(DEVICE_WIDTH * 0.05),
-    y: px(DEVICE_HEIGHT * 0.55),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.55),
     src: "previous.png",
   },
   gts4mini: {
     x: px(DEVICE_WIDTH * 0.05),
-    y: px(DEVICE_HEIGHT * 0.55),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.55),
     src: "previous.png",
   },
   gts3: {
     x: px(DEVICE_WIDTH * 0.05),
-    y: px(DEVICE_HEIGHT * 0.5 + 12),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.5 + 12),
     src: "previous.png",
   },
   gtr3: {
     x: px(DEVICE_WIDTH * 0.05),
-    y: px(DEVICE_HEIGHT * 0.5 + 12),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.5 + 12),
     src: "previous.png",
   },
 };
@@ -176,7 +250,7 @@ const PREV_BUTTON = {
 const PROGRESS_BAR_BKG = {
   band7: {
     x: px(8),
-    y: px(DEVICE_HEIGHT * 0.4),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.4),
     w: px(DEVICE_WIDTH - 8),
     h: px(4),
     radius: px(2),
@@ -184,7 +258,7 @@ const PROGRESS_BAR_BKG = {
   },
   gts4mini: {
     x: px(8),
-    y: px(DEVICE_HEIGHT * 0.4),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.4),
     w: px(DEVICE_WIDTH - 8),
     h: px(8),
     radius: px(4),
@@ -192,7 +266,7 @@ const PROGRESS_BAR_BKG = {
   },
   gts3: {
     x: px(8),
-    y: px(DEVICE_HEIGHT * 0.4),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.4),
     w: px(DEVICE_WIDTH - 16),
     h: px(8),
     radius: px(4),
@@ -200,7 +274,7 @@ const PROGRESS_BAR_BKG = {
   },
   gtr3: {
     x: px(8),
-    y: px(DEVICE_HEIGHT * 0.4),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.4),
     w: px(DEVICE_WIDTH - 16),
     h: px(8),
     radius: px(4),
@@ -211,7 +285,7 @@ const PROGRESS_BAR_BKG = {
 const PROGRESS_BAR = {
   band7: {
     x: px(8),
-    y: px(DEVICE_HEIGHT * 0.4),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.4),
     w: px(0),
     h: px(4),
     radius: px(2),
@@ -219,7 +293,7 @@ const PROGRESS_BAR = {
   },
   gts4mini: {
     x: px(8),
-    y: px(DEVICE_HEIGHT * 0.4),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.4),
     w: px(0),
     h: px(8),
     radius: px(4),
@@ -227,7 +301,7 @@ const PROGRESS_BAR = {
   },
   gts3: {
     x: px(8),
-    y: px(DEVICE_HEIGHT * 0.4),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.4),
     w: px(0),
     h: px(8),
     radius: px(4),
@@ -235,7 +309,7 @@ const PROGRESS_BAR = {
   },
   gtr3: {
     x: px(8),
-    y: px(DEVICE_HEIGHT * 0.4),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.4),
     w: px(0),
     h: px(8),
     radius: px(4),
@@ -246,38 +320,38 @@ const PROGRESS_BAR = {
 const LIKE_BUTTON = {
   band7: {
     x: DEVICE_WIDTH / 2 - px(68),
-    y: DEVICE_HEIGHT - px(78),
+    y: controlsStart + DEVICE_HEIGHT - px(78),
   },
   gts4mini: {
     x: DEVICE_WIDTH / 2 - px(68),
-    y: DEVICE_HEIGHT - px(78),
+    y: controlsStart + DEVICE_HEIGHT - px(78),
   },
   gts3: {
     x: DEVICE_WIDTH / 2 - px(68),
-    y: DEVICE_HEIGHT - px(78),
+    y: controlsStart + DEVICE_HEIGHT - px(78),
   },
   gtr3: {
     x: DEVICE_WIDTH / 2 - px(68),
-    y: DEVICE_HEIGHT - px(78),
+    y: controlsStart + DEVICE_HEIGHT - px(78),
   },
 };
 
 const SHUFFLE_BUTTON = {
   band7: {
     x: DEVICE_WIDTH / 2 + px(20),
-    y: DEVICE_HEIGHT - px(74),
+    y: controlsStart + DEVICE_HEIGHT - px(74),
   },
   gts4mini: {
     x: DEVICE_WIDTH / 2 + px(20),
-    y: DEVICE_HEIGHT - px(74),
+    y: controlsStart + DEVICE_HEIGHT - px(74),
   },
   gts3: {
     x: DEVICE_WIDTH / 2 + px(20),
-    y: DEVICE_HEIGHT - px(74),
+    y: controlsStart + DEVICE_HEIGHT - px(74),
   },
   gtr3: {
     x: DEVICE_WIDTH / 2 + px(20),
-    y: DEVICE_HEIGHT - px(74),
+    y: controlsStart + DEVICE_HEIGHT - px(74),
   },
 };
 
@@ -335,6 +409,7 @@ const QUEUED_SONG = {
 export const getStyles = (deviceName) => {
   if (deviceName == "Amazfit Band 7")
     return {
+      DEVICES_BUTTON: DEVICES_BUTTON.band7,
       SONG: SONG.band7,
       ARTIST: ARTIST.band7,
       PLAY_BUTTON: PLAY_BUTTON.band7,
@@ -348,6 +423,7 @@ export const getStyles = (deviceName) => {
     };
   else if (deviceName == "GTS 4 mini")
     return {
+      DEVICES_BUTTON: DEVICES_BUTTON.gts4mini,
       SONG: SONG.gts4mini,
       ARTIST: ARTIST.gts4mini,
       PLAY_BUTTON: PLAY_BUTTON.gts4mini,
@@ -361,6 +437,7 @@ export const getStyles = (deviceName) => {
     };
   else if (deviceName == "GTS 3")
     return {
+      DEVICES_BUTTON: DEVICES_BUTTON.gts3,
       SONG: SONG.gts3,
       ARTIST: ARTIST.gts3,
       PLAY_BUTTON: PLAY_BUTTON.gts3,
@@ -374,6 +451,7 @@ export const getStyles = (deviceName) => {
     };
   return {
     // gtr 3
+    DEVICES_BUTTON: DEVICES_BUTTON.gtr3,
     SONG: SONG.gtr3,
     ARTIST: ARTIST.gtr3,
     PLAY_BUTTON: PLAY_BUTTON.gtr3,

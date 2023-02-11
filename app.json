@@ -27,7 +27,8 @@
           "pages": [
             "pages/home/index.page",
             "pages/library/library.page",
-            "pages/playlist/playlist.page"
+            "pages/playlist/playlist.page",
+            "pages/devices/devices.page"
           ]
         },
         "app-side": {
@@ -55,7 +56,8 @@
           "pages": [
             "pages/home/index.page",
             "pages/library/library.page",
-            "pages/playlist/playlist.page"
+            "pages/playlist/playlist.page",
+            "pages/devices/devices.page"
           ]
         },
         "app-side": {
@@ -83,7 +85,8 @@
           "pages": [
             "pages/home/index.page",
             "pages/library/library.page",
-            "pages/playlist/playlist.page"
+            "pages/playlist/playlist.page",
+            "pages/devices/devices.page"
           ]
         },
         "app-side": {
@@ -111,7 +114,8 @@
           "pages": [
             "pages/home/index.page",
             "pages/library/library.page",
-            "pages/playlist/playlist.page"
+            "pages/playlist/playlist.page",
+            "pages/devices/devices.page"
           ]
         },
         "app-side": {
