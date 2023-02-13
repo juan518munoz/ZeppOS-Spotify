@@ -13,6 +13,7 @@ Beta testing open for ZeppOS v1.0, comment on the issue thread to join!
 * [Node.js](https://youtu.be/MrJkkG-yt7A?t=23)
 * [ZeusCLI](https://docs.zepp.com/docs/guides/tools/cli/#installing-the-zeus-cli)
 * __Spotify premium account__
+* The zepp account you are using must be directly registered (no google, mi fit, etc login).
 
 ## Installation process
 
