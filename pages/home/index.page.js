@@ -21,7 +21,7 @@ Page({
   build() {
     hmUI.updateStatusBarTitle("player");
     hmApp.setLayerY(-DEVICE_HEIGHT);
-    this.refresh(this.player);
+    this.refresh();
     hmApp.setScreenKeep(true);
     const isVertical = true;
     hmUI.setScrollView(false, DEVICE_HEIGHT, 4, isVertical);
@@ -120,11 +120,6 @@ Page({
     });
   },
   refresh() {
-    // Refresh data
-    timer.createTimer(150, 10000, () => {
-      playerControl.update();
-    });
-
     // Refresh UI
     timer.createTimer(0, 150, () => {
       song.setProperty(hmUI.prop.MORE, {
@@ -159,6 +154,5 @@ Page({
   },
   onDestroy() {
     vibrate && vibrate.stop();
-    hmSetting.setBrightScreenCancel();
   },
 });

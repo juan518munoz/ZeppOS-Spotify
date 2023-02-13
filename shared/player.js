@@ -15,9 +15,9 @@ export class PlayerControl {
     };
     this.song = "";
     this.artist = "";
-    this.playState = "";
-    this.likeState = "";
-    this.shuffleState = "";
+    this.playState = "play";
+    this.likeState = "notLiked";
+    this.shuffleState = "noShuffle";
     this.songId = "";
     this.queue = [];
     this.progress = 0;
