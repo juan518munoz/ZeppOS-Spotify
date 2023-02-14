@@ -78,6 +78,23 @@ const DEVICES_BUTTON = {
       hmApp.gotoPage({ url: "pages/devices/devices.page" });
     },
   },
+  gts4: {
+    x: 0,
+    y: (DEVICE_HEIGHT * 1) / 4,
+    w: DEVICE_WIDTH,
+    h: DEVICE_HEIGHT / 2,
+    radius: 12,
+    normal_color: 0x1fdf64,
+    press_color: 0x1fdf64,
+    //w: -1,
+    //h: -1,
+    //normal_src: 'button_normal.png',
+    //press_src: 'button_press.png',
+    text: "devices",
+    click_func: () => {
+      hmApp.gotoPage({ url: "pages/devices/devices.page" });
+    },
+  },
 };
 
 const SONG = {
@@ -121,6 +138,18 @@ const SONG = {
     x: px(24),
     y: px(controlsStart + DEVICE_HEIGHT * 0.12),
     w: px(DEVICE_WIDTH - 24),
+    h: px(60),
+    color: 0xffffff,
+    text_size: px(48),
+    align_h: hmUI.align.CENTER_H,
+    align_v: hmUI.align.CENTER_V,
+    text_style: hmUI.text_style.NONE,
+    text: "",
+  },
+  gts4: {
+    x: 0,
+    y: px(controlsStart + DEVICE_HEIGHT * 0.12),
+    w: px(DEVICE_WIDTH),
     h: px(60),
     color: 0xffffff,
     text_size: px(48),
@@ -180,6 +209,18 @@ const ARTIST = {
     text_style: hmUI.text_style.NONE,
     text: "",
   },
+  gts4: {
+    x: 0,
+    y: px(controlsStart + DEVICE_HEIGHT * 0.24),
+    w: px(DEVICE_WIDTH),
+    h: px(40),
+    color: 0xb3b3b3,
+    text_size: px(32),
+    align_h: hmUI.align.CENTER_H,
+    align_v: hmUI.align.CENTER_V,
+    text_style: hmUI.text_style.NONE,
+    text: "",
+  },
 };
 
 const PLAY_BUTTON = {
@@ -196,6 +237,10 @@ const PLAY_BUTTON = {
     y: px(controlsStart + DEVICE_HEIGHT * 0.5),
   },
   gtr3: {
+    x: px(DEVICE_WIDTH / 2 - 47),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.5),
+  },
+  gts4: {
     x: px(DEVICE_WIDTH / 2 - 47),
     y: px(controlsStart + DEVICE_HEIGHT * 0.5),
   },
@@ -222,6 +267,11 @@ const NEXT_BUTTON = {
     y: px(controlsStart + DEVICE_HEIGHT * 0.5 + 12),
     src: "next.png",
   },
+  gts4: {
+    x: px(DEVICE_WIDTH * 0.95 - 73),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.5 + 12),
+    src: "next.png",
+  },
 };
 
 const PREV_BUTTON = {
@@ -241,6 +291,11 @@ const PREV_BUTTON = {
     src: "previous.png",
   },
   gtr3: {
+    x: px(DEVICE_WIDTH * 0.05),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.5 + 12),
+    src: "previous.png",
+  },
+  gts4: {
     x: px(DEVICE_WIDTH * 0.05),
     y: px(controlsStart + DEVICE_HEIGHT * 0.5 + 12),
     src: "previous.png",
@@ -273,6 +328,14 @@ const PROGRESS_BAR_BKG = {
     color: 0x5e5e5e,
   },
   gtr3: {
+    x: px(8),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.4),
+    w: px(DEVICE_WIDTH - 16),
+    h: px(8),
+    radius: px(4),
+    color: 0x5e5e5e,
+  },
+  gts4: {
     x: px(8),
     y: px(controlsStart + DEVICE_HEIGHT * 0.4),
     w: px(DEVICE_WIDTH - 16),
@@ -315,6 +378,14 @@ const PROGRESS_BAR = {
     radius: px(4),
     color: 0x1db954,
   },
+  gts4: {
+    x: px(8),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.4),
+    w: px(0),
+    h: px(8),
+    radius: px(4),
+    color: 0x1db954,
+  },
 };
 
 const LIKE_BUTTON = {
@@ -334,6 +405,10 @@ const LIKE_BUTTON = {
     x: DEVICE_WIDTH / 2 - px(68),
     y: controlsStart + DEVICE_HEIGHT - px(78),
   },
+  gts4: {
+    x: DEVICE_WIDTH / 2 - px(68),
+    y: controlsStart + DEVICE_HEIGHT - px(78),
+  },
 };
 
 const SHUFFLE_BUTTON = {
@@ -350,6 +425,10 @@ const SHUFFLE_BUTTON = {
     y: controlsStart + DEVICE_HEIGHT - px(74),
   },
   gtr3: {
+    x: DEVICE_WIDTH / 2 + px(20),
+    y: controlsStart + DEVICE_HEIGHT - px(74),
+  },
+  gts4: {
     x: DEVICE_WIDTH / 2 + px(20),
     y: controlsStart + DEVICE_HEIGHT - px(74),
   },
@@ -393,6 +472,18 @@ const QUEUED_SONG = {
     text: "",
   },
   gtr3: {
+    x: 0,
+    //y: px(DEVICE_HEIGHT + 70 * (i + 1)),
+    w: px(DEVICE_WIDTH),
+    h: px(48),
+    color: 0xffffff,
+    text_size: px(36),
+    align_h: hmUI.align.LEFT,
+    align_v: hmUI.align.CENTER_V,
+    text_style: hmUI.text_style.ELLIPSIS,
+    text: "",
+  },
+  gts4: {
     x: 0,
     //y: px(DEVICE_HEIGHT + 70 * (i + 1)),
     w: px(DEVICE_WIDTH),
@@ -448,6 +539,20 @@ export const getStyles = (deviceName) => {
       LIKE_BUTTON: LIKE_BUTTON.gts3,
       SHUFFLE_BUTTON: SHUFFLE_BUTTON.gts3,
       QUEUED_SONG: QUEUED_SONG.gts3,
+    };
+  else if (deviceName == "GTS 4")
+    return {
+      DEVICES_BUTTON: DEVICES_BUTTON.gts4,
+      SONG: SONG.gts4,
+      ARTIST: ARTIST.gts4,
+      PLAY_BUTTON: PLAY_BUTTON.gts4,
+      NEXT_BUTTON: NEXT_BUTTON.gts4,
+      PREV_BUTTON: PREV_BUTTON.gts4,
+      PROGRESS_BAR_BKG: PROGRESS_BAR_BKG.gts4,
+      PROGRESS_BAR: PROGRESS_BAR.gts4,
+      LIKE_BUTTON: LIKE_BUTTON.gts4,
+      SHUFFLE_BUTTON: SHUFFLE_BUTTON.gts4,
+      QUEUED_SONG: QUEUED_SONG.gts4,
     };
   return {
     // gtr 3

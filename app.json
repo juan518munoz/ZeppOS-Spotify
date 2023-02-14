@@ -108,7 +108,7 @@
       ],
       "designWidth": 390
     },
-    "gtr3": {
+    "gtr3-trex2": {
       "module": {
         "page": {
           "pages": [
@@ -133,9 +133,137 @@
         {
           "name": "gtr-3-w",
           "deviceSource": 227
+        },
+        {
+          "name": "trex-2",
+          "deviceSource": 418
+        },
+        {
+          "name": "trex-2-w",
+          "deviceSource": 419
         }
       ],
       "designWidth": 454
+    },
+    "gtr3pro": {
+      "module": {
+        "page": {
+          "pages": [
+            "pages/home/index.page",
+            "pages/library/library.page",
+            "pages/playlist/playlist.page",
+            "pages/devices/devices.page"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "gtr-3-pro",
+          "deviceSource": 229
+        },
+        {
+          "name": "gtr-3-pro-w",
+          "deviceSource": 230
+        },
+        {
+          "name": "gtr-3-pro-x",
+          "deviceSource": 6095106
+        }
+      ],
+      "designWidth": 480
+    },
+    "falcon": {
+      "module": {
+        "page": {
+          "pages": [
+            "pages/home/index.page",
+            "pages/library/library.page",
+            "pages/playlist/playlist.page",
+            "pages/devices/devices.page"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "falcon",
+          "deviceSource": 414
+        },
+        {
+          "name": "falcon-w",
+          "deviceSource": 415
+        }
+      ],
+      "designWidth": 416
+    },
+    "gts4": {
+      "module": {
+        "page": {
+          "pages": [
+            "pages/home/index.page",
+            "pages/library/library.page",
+            "pages/playlist/playlist.page",
+            "pages/devices/devices.page"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "gts4",
+          "deviceSource": 7995648
+        },
+        {
+          "name": "gts4-w",
+          "deviceSource": 7995649
+        }
+      ],
+      "designWidth": 390
+    },
+    "gtr4": {
+      "module": {
+        "page": {
+          "pages": [
+            "pages/home/index.page",
+            "pages/library/library.page",
+            "pages/playlist/playlist.page",
+            "pages/devices/devices.page"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "gtr-4",
+          "deviceSource": 7930112
+        },
+        {
+          "name": "gtr-4-w",
+          "deviceSource": 7930113
+        }
+      ],
+      "designWidth": 466
     }
   },
   "i18n": {

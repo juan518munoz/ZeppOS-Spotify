@@ -51,6 +51,17 @@ const LIBRARY_HEADER = {
     align_v: hmUI.align.CENTER_V,
     text_style: hmUI.text_style.NONE,
   },
+  gts4: {
+    x: 0,
+    y: px(DEVICE_HEIGHT * 0.15),
+    w: px(DEVICE_WIDTH),
+    h: px(52),
+    color: 0x1fdf64,
+    text_size: px(42),
+    align_h: hmUI.align.CENTER_H,
+    align_v: hmUI.align.CENTER_V,
+    text_style: hmUI.text_style.NONE,
+  },
 };
 
 const TITLE = {
@@ -102,6 +113,18 @@ const TITLE = {
     text_style: hmUI.text_style.ELLIPSIS,
     //text: name,
   },
+  gts4: {
+    x: 0,
+    //y: px(DEVICE_HEIGHT * 0.35 + 60 * i),
+    w: px(DEVICE_WIDTH),
+    h: px(48),
+    color: 0xffffff,
+    text_size: px(36),
+    align_h: hmUI.align.LEFT,
+    align_v: hmUI.align.CENTER_V,
+    text_style: hmUI.text_style.ELLIPSIS,
+    //text: name,
+  },
 };
 
 export const getStyles = (deviceName) => {
@@ -119,6 +142,11 @@ export const getStyles = (deviceName) => {
     return {
       LIBRARY_HEADER: LIBRARY_HEADER.gts3,
       TITLE: TITLE.gts3,
+    };
+  else if (deviceName == "GTS 4")
+    return {
+      LIBRARY_HEADER: LIBRARY_HEADER.gts4,
+      TITLE: TITLE.gts4,
     };
   // default - gtr3
   return {

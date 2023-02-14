@@ -27,6 +27,11 @@ const PLAY_BUTTON = {
     y: px(DEVICE_HEIGHT * 0.15),
     src: `playlistPlay.png`,
   },
+  gts4: {
+    x: DEVICE_WIDTH / 2 - px(47),
+    y: px(DEVICE_HEIGHT * 0.15),
+    src: `playlistPlay.png`,
+  },
 };
 
 const PLAYLIST_TITLE = {
@@ -64,6 +69,17 @@ const PLAYLIST_TITLE = {
     text_style: hmUI.text_style.NONE,
   },
   gtr3: {
+    x: 0,
+    y: px(DEVICE_HEIGHT * 0.37),
+    w: px(DEVICE_WIDTH),
+    h: px(50),
+    color: 0x1fdf64,
+    text_size: px(40),
+    align_h: hmUI.align.CENTER_H,
+    align_v: hmUI.align.CENTER_V,
+    text_style: hmUI.text_style.NONE,
+  },
+  gts4: {
     x: 0,
     y: px(DEVICE_HEIGHT * 0.37),
     w: px(DEVICE_WIDTH),
@@ -121,6 +137,17 @@ const SONG = {
     align_v: hmUI.align.CENTER_V,
     text_style: hmUI.text_style.ELLIPSIS,
   },
+  gts4: {
+    x: 0,
+    //y: px(DEVICE_HEIGHT * 0.5 + 40 * i),
+    w: px(DEVICE_WIDTH),
+    h: px(32),
+    color: 0xffffff,
+    text_size: px(30),
+    align_h: hmUI.align.LEFT,
+    align_v: hmUI.align.CENTER_V,
+    text_style: hmUI.text_style.ELLIPSIS,
+  },
 };
 
 const ARTIST = {
@@ -168,6 +195,17 @@ const ARTIST = {
     align_v: hmUI.align.CENTER_V,
     text_style: hmUI.text_style.ELLIPSIS,
   },
+  gts4: {
+    x: 0,
+    //y: px(DEVICE_HEIGHT * 0.55 + 40 * i),
+    w: px(DEVICE_WIDTH),
+    h: px(24),
+    color: 0xb3b3b3,
+    text_size: px(20),
+    align_h: hmUI.align.LEFT,
+    align_v: hmUI.align.CENTER_V,
+    text_style: hmUI.text_style.ELLIPSIS,
+  },
 };
 
 export const getStyles = (deviceName) => {
@@ -191,6 +229,13 @@ export const getStyles = (deviceName) => {
       PLAYLIST_TITLE: PLAYLIST_TITLE.gts3,
       SONG: SONG.gts3,
       ARTIST: ARTIST.gts3,
+    };
+  else if (deviceName == "GTS 4")
+    return {
+      PLAY_BUTTON: PLAY_BUTTON.gts4,
+      PLAYLIST_TITLE: PLAYLIST_TITLE.gts4,
+      SONG: SONG.gts4,
+      ARTIST: ARTIST.gts4,
     };
   return {
     // gtr 3
