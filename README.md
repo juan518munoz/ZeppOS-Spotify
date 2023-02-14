@@ -1,10 +1,8 @@
 # ZeppOS-Spotify
+Spotify manager for ZeppOS using Console api calls 
 
 ![player](https://user-images.githubusercontent.com/62400508/216854610-34e33b0f-815b-4127-8d8d-81e2e7f77969.png)
 ![player](https://user-images.githubusercontent.com/62400508/216854731-967dcb84-b12b-497a-befb-0c8751d206c3.png)
-
-## Spotify manager for ZeppOS using Console api calls 
-Beta testing open for ZeppOS v1.0, comment on the issue thread to join!
 
 # How to use
 
