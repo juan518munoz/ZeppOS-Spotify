@@ -24,6 +24,7 @@ Beta testing open for ZeppOS v1.0, comment on the issue thread to join!
 
 #### 3. Select Edit Settings, then paste the following URI as shown on 'Redirect URIs' then save
 `http://zepp-os-staging.zepp.com/app-settings/v1.0.0/index.html?appId=1017560`
+
 ![image](https://user-images.githubusercontent.com/62400508/218193247-40511909-9e62-4122-a704-067f32d4a815.png)
 ![image](https://user-images.githubusercontent.com/62400508/218193471-6043a0da-7985-4d41-b190-8dd2e9a8b334.png)
 ![image](https://user-images.githubusercontent.com/62400508/218193505-9808331f-9a60-4bb9-930c-423e8d2b83de.png)
