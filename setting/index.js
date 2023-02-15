@@ -2,6 +2,10 @@ import { client_id, client_secret } from "../utils/config/client";
 
 const redirectUri =
   "http://zepp-os-staging.zepp.com/app-settings/v1.0.0/index.html?appId=1017560";
+const source = `https://accounts.spotify.com/en/authorize?client_id=${client_id}&response_type=code&redirect_uri=${redirectUri}&scope=ugc-image-upload user-read-playback-state user-modify-playback-state user-read-currently-playing app-remote-control streaming playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public user-follow-modify user-follow-read user-read-playback-position user-top-read user-read-recently-played user-library-modify user-library-read user-read-email user-read-private`;
+const manualRedirectUri = "https://juan518munoz.github.io/ZeppOS-Spotify-Web";
+const manualSource = `https://accounts.spotify.com/en/authorize?client_id=${client_id}&response_type=code&redirect_uri=https://juan518munoz.github.io/ZeppOS-Spotify-Web&scope=ugc-image-upload user-read-playback-state user-modify-playback-state user-read-currently-playing app-remote-control streaming playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public user-follow-modify user-follow-read user-read-playback-position user-top-read user-read-recently-played user-library-modify user-library-read user-read-email user-read-private`;
+
 let done = false;
 
 const BtnStyle = {
@@ -28,6 +32,7 @@ AppSettingsPage({
     props.settingsStorage.removeItem("user");
     props.settingsStorage.removeItem("mail");
     props.settingsStorage.removeItem("product");
+    props.settingsStorage.removeItem("iosLogin");
   },
   login(props) {
     if (done) return;
@@ -45,14 +50,14 @@ AppSettingsPage({
       }
     });
   },
-  getRefreshToken(props) {
+  getRefreshToken(props, token = "notoken", uri = redirectUri) {
     return new Promise((resolve) => {
       let details = {
         grant_type: "authorization_code",
-        code: props.settingsStorage.getItem("authToken"),
+        code: props.settingsStorage.getItem("authToken") || token,
         client_id: client_id,
         client_secret: client_secret,
-        redirect_uri: redirectUri,
+        redirect_uri: uri,
       };
       let formBody = [];
       for (let property in details) {
@@ -93,8 +98,14 @@ AppSettingsPage({
   },
   getUserInfo(props) {
     const access_token = props.settingsStorage.getItem("accessToken");
-    if (access_token === undefined || access_token.lenght === 0) {
-      return getUserInfo(props); // forces the program to wait for the accessToken to be set
+    if (
+      access_token === undefined ||
+      access_token === null ||
+      access_token.lenght === 0
+    ) {
+      setTimeout(() => {
+        this.getUserInfo(props);
+      }, "1000");
     }
     fetch("https://api.spotify.com/v1/me/", {
       method: "GET",
@@ -202,28 +213,9 @@ AppSettingsPage({
         ),
       ]
     );
-    const refreshToken = Section(
-      {
-        title: "Current refreshToken:",
-        style: {
-          paddingTop: "30px",
-          width: "100%",
-        },
-        description: "If you are seeing this then the app should be working.",
-      },
-      [
-        Button({
-          style: {
-            width: "100%",
-            overflow: "hidden",
-          },
-          label: props.settingsStorage.getItem("refreshToken"),
-        }),
-      ]
-    );
     const loginBtn = Link(
       {
-        source: `https://accounts.spotify.com/en/authorize?client_id=${client_id}&response_type=code&redirect_uri=${redirectUri}&scope=ugc-image-upload user-read-playback-state user-modify-playback-state user-read-currently-playing app-remote-control streaming playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public user-follow-modify user-follow-read user-read-playback-position user-top-read user-read-recently-played user-library-modify user-library-read user-read-email user-read-private`,
+        source: source,
       },
       [
         Button({
@@ -275,6 +267,50 @@ AppSettingsPage({
         ),
       ]
     );
+    const iosBtn = Button({
+      label: "MANUAL LOG IN",
+      style: {
+        ...BtnStyle,
+      },
+      onClick: () => {
+        props.settingsStorage.getItem("iosLogin") == "visible"
+          ? props.settingsStorage.setItem("iosLogin", "hidden")
+          : props.settingsStorage.setItem("iosLogin", "visible");
+      },
+    });
+    const manualLogInModal = View(
+      {
+        style: {
+          visibility: props.settingsStorage.getItem("iosLogin") || "hidden",
+          marginTop: "40px",
+        },
+      },
+      [
+        Link({ source: manualSource }, "Click here to log in"),
+        Text(
+          {},
+          ", then on the resulting URL then paste the obtained token bellow:"
+        ),
+        TextInput({
+          settingsKey: "authToken",
+          subStyle: {
+            marginTop: "4px",
+            color: "#000000",
+            fontSize: "15px",
+            borderStyle: "solid",
+            borderColor: "#1db954",
+            borderRadius: "12px",
+            height: "40px",
+            overflow: "hidden",
+          },
+          onChange: (value) => {
+            this.getRefreshToken(props, value, manualRedirectUri);
+            this.getUserInfo(props);
+          },
+        }),
+      ]
+    );
+
     return View(
       {
         style: {
@@ -294,7 +330,7 @@ AppSettingsPage({
         logo,
         props.settingsStorage.getItem("refreshToken") == null ||
         props.settingsStorage.getItem("refreshToken") == ""
-          ? [loginBtn]
+          ? [loginBtn, iosBtn, manualLogInModal]
           : [userInfo, logoutBtn],
         credits,
       ]
