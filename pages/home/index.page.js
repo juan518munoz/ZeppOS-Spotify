@@ -76,6 +76,10 @@ Page({
       ...styles.PROGRESS_BAR,
     });
 
+    spotifyIcon = hmUI.createWidget(hmUI.widget.IMG, {
+      ...styles.SPOTIFY_ICON,
+    });
+
     likeBtn = hmUI.createWidget(hmUI.widget.IMG, {
       ...styles.LIKE_BUTTON,
     });

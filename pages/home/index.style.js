@@ -230,11 +230,11 @@ const PLAY_BUTTON = {
   },
   gts4mini: {
     x: px(DEVICE_WIDTH / 2 - 43),
-    y: px(controlsStart + DEVICE_HEIGHT * 0.5),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.42),
   },
   gts3: {
     x: px(DEVICE_WIDTH / 2 - 47),
-    y: px(controlsStart + DEVICE_HEIGHT * 0.5),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.45),
   },
   gtr3: {
     x: px(DEVICE_WIDTH / 2 - 47),
@@ -242,7 +242,7 @@ const PLAY_BUTTON = {
   },
   gts4: {
     x: px(DEVICE_WIDTH / 2 - 47),
-    y: px(controlsStart + DEVICE_HEIGHT * 0.5),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.45),
   },
 };
 
@@ -254,12 +254,12 @@ const NEXT_BUTTON = {
   },
   gts4mini: {
     x: px(DEVICE_WIDTH * 0.95 - 49),
-    y: px(controlsStart + DEVICE_HEIGHT * 0.55),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.47),
     src: "next.png",
   },
   gts3: {
     x: px(DEVICE_WIDTH * 0.95 - 73),
-    y: px(controlsStart + DEVICE_HEIGHT * 0.5 + 12),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.45 + 12),
     src: "next.png",
   },
   gtr3: {
@@ -269,7 +269,7 @@ const NEXT_BUTTON = {
   },
   gts4: {
     x: px(DEVICE_WIDTH * 0.95 - 73),
-    y: px(controlsStart + DEVICE_HEIGHT * 0.5 + 12),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.45 + 12),
     src: "next.png",
   },
 };
@@ -282,12 +282,12 @@ const PREV_BUTTON = {
   },
   gts4mini: {
     x: px(DEVICE_WIDTH * 0.05),
-    y: px(controlsStart + DEVICE_HEIGHT * 0.55),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.47),
     src: "previous.png",
   },
   gts3: {
     x: px(DEVICE_WIDTH * 0.05),
-    y: px(controlsStart + DEVICE_HEIGHT * 0.5 + 12),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.45 + 12),
     src: "previous.png",
   },
   gtr3: {
@@ -297,7 +297,7 @@ const PREV_BUTTON = {
   },
   gts4: {
     x: px(DEVICE_WIDTH * 0.05),
-    y: px(controlsStart + DEVICE_HEIGHT * 0.5 + 12),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.45 + 12),
     src: "previous.png",
   },
 };
@@ -313,15 +313,15 @@ const PROGRESS_BAR_BKG = {
   },
   gts4mini: {
     x: px(8),
-    y: px(controlsStart + DEVICE_HEIGHT * 0.4),
-    w: px(DEVICE_WIDTH - 8),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.35),
+    w: px(DEVICE_WIDTH) - px(16),
     h: px(8),
     radius: px(4),
     color: 0x5e5e5e,
   },
   gts3: {
     x: px(8),
-    y: px(controlsStart + DEVICE_HEIGHT * 0.4),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.38),
     w: px(DEVICE_WIDTH - 16),
     h: px(8),
     radius: px(4),
@@ -337,7 +337,7 @@ const PROGRESS_BAR_BKG = {
   },
   gts4: {
     x: px(8),
-    y: px(controlsStart + DEVICE_HEIGHT * 0.4),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.38),
     w: px(DEVICE_WIDTH - 16),
     h: px(8),
     radius: px(4),
@@ -356,15 +356,15 @@ const PROGRESS_BAR = {
   },
   gts4mini: {
     x: px(8),
-    y: px(controlsStart + DEVICE_HEIGHT * 0.4),
-    w: px(0),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.35),
+    w: px(0), // doesnt work
     h: px(8),
     radius: px(4),
     color: 0x1db954,
   },
   gts3: {
     x: px(8),
-    y: px(controlsStart + DEVICE_HEIGHT * 0.4),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.38),
     w: px(0),
     h: px(8),
     radius: px(4),
@@ -380,7 +380,7 @@ const PROGRESS_BAR = {
   },
   gts4: {
     x: px(8),
-    y: px(controlsStart + DEVICE_HEIGHT * 0.4),
+    y: px(controlsStart + DEVICE_HEIGHT * 0.38),
     w: px(0),
     h: px(8),
     radius: px(4),
@@ -391,46 +391,74 @@ const PROGRESS_BAR = {
 const LIKE_BUTTON = {
   band7: {
     x: DEVICE_WIDTH / 2 - px(68),
-    y: controlsStart + DEVICE_HEIGHT - px(78),
+    y: controlsStart + DEVICE_HEIGHT,
   },
   gts4mini: {
-    x: DEVICE_WIDTH / 2 - px(68),
-    y: controlsStart + DEVICE_HEIGHT - px(78),
+    x: DEVICE_WIDTH / 2 - px(68) - px(30),
+    y: controlsStart + DEVICE_HEIGHT - px(78) - px(28),
   },
   gts3: {
-    x: DEVICE_WIDTH / 2 - px(68),
-    y: controlsStart + DEVICE_HEIGHT - px(78),
+    x: DEVICE_WIDTH / 2 - px(68) - px(30),
+    y: controlsStart + DEVICE_HEIGHT - px(78) - px(44),
   },
   gtr3: {
-    x: DEVICE_WIDTH / 2 - px(68),
-    y: controlsStart + DEVICE_HEIGHT - px(78),
+    x: DEVICE_WIDTH / 2 - px(68) - px(38),
+    y: controlsStart + DEVICE_HEIGHT - px(78) - px(20),
   },
   gts4: {
-    x: DEVICE_WIDTH / 2 - px(68),
-    y: controlsStart + DEVICE_HEIGHT - px(78),
+    x: DEVICE_WIDTH / 2 - px(68) - px(40),
+    y: controlsStart + DEVICE_HEIGHT - px(78) - px(40),
   },
 };
 
 const SHUFFLE_BUTTON = {
   band7: {
     x: DEVICE_WIDTH / 2 + px(20),
-    y: controlsStart + DEVICE_HEIGHT - px(74),
+    y: controlsStart + DEVICE_HEIGHT + px(4),
   },
   gts4mini: {
-    x: DEVICE_WIDTH / 2 + px(20),
-    y: controlsStart + DEVICE_HEIGHT - px(74),
+    x: DEVICE_WIDTH / 2 + px(20) + px(30),
+    y: controlsStart + DEVICE_HEIGHT - px(74) - px(28),
   },
   gts3: {
-    x: DEVICE_WIDTH / 2 + px(20),
-    y: controlsStart + DEVICE_HEIGHT - px(74),
+    x: DEVICE_WIDTH / 2 + px(20) + px(30),
+    y: controlsStart + DEVICE_HEIGHT - px(74) - px(44),
   },
   gtr3: {
-    x: DEVICE_WIDTH / 2 + px(20),
-    y: controlsStart + DEVICE_HEIGHT - px(74),
+    x: DEVICE_WIDTH / 2 + px(20) + px(38),
+    y: controlsStart + DEVICE_HEIGHT - px(74) - px(20),
   },
   gts4: {
-    x: DEVICE_WIDTH / 2 + px(20),
-    y: controlsStart + DEVICE_HEIGHT - px(74),
+    x: DEVICE_WIDTH / 2 + px(20) + px(40),
+    y: controlsStart + DEVICE_HEIGHT - px(74) - px(40),
+  },
+};
+
+const SPOTIFY_ICON = {
+  band7: {
+    x: DEVICE_WIDTH / 2 - px(24),
+    y: controlsStart + DEVICE_HEIGHT - px(78),
+    src: "player_icon.png",
+  },
+  gts4mini: {
+    x: DEVICE_WIDTH / 2 - px(24),
+    y: controlsStart + DEVICE_HEIGHT - px(24) - px(46),
+    src: "player_icon.png",
+  },
+  gts3: {
+    x: DEVICE_WIDTH / 2 - px(24),
+    y: controlsStart + DEVICE_HEIGHT - px(24) - px(40),
+    src: "player_icon.png",
+  },
+  gtr3: {
+    x: DEVICE_WIDTH / 2 - px(24),
+    y: controlsStart + DEVICE_HEIGHT - px(24) - px(28),
+    src: "player_icon.png",
+  },
+  gts4: {
+    x: DEVICE_WIDTH / 2 - px(24),
+    y: controlsStart + DEVICE_HEIGHT - px(24) - px(42),
+    src: "player_icon.png",
   },
 };
 
@@ -510,6 +538,7 @@ export const getStyles = (deviceName) => {
       PROGRESS_BAR: PROGRESS_BAR.band7,
       LIKE_BUTTON: LIKE_BUTTON.band7,
       SHUFFLE_BUTTON: SHUFFLE_BUTTON.band7,
+      SPOTIFY_ICON: SPOTIFY_ICON.band7,
       QUEUED_SONG: QUEUED_SONG.band7,
     };
   else if (deviceName == "GTS 4 mini")
@@ -524,6 +553,7 @@ export const getStyles = (deviceName) => {
       PROGRESS_BAR: PROGRESS_BAR.gts4mini,
       LIKE_BUTTON: LIKE_BUTTON.gts4mini,
       SHUFFLE_BUTTON: SHUFFLE_BUTTON.gts4mini,
+      SPOTIFY_ICON: SPOTIFY_ICON.gts4mini,
       QUEUED_SONG: QUEUED_SONG.gts4mini,
     };
   else if (deviceName == "GTS 3")
@@ -538,6 +568,7 @@ export const getStyles = (deviceName) => {
       PROGRESS_BAR: PROGRESS_BAR.gts3,
       LIKE_BUTTON: LIKE_BUTTON.gts3,
       SHUFFLE_BUTTON: SHUFFLE_BUTTON.gts3,
+      SPOTIFY_ICON: SPOTIFY_ICON.gts3,
       QUEUED_SONG: QUEUED_SONG.gts3,
     };
   else if (deviceName == "GTS 4")
@@ -552,6 +583,7 @@ export const getStyles = (deviceName) => {
       PROGRESS_BAR: PROGRESS_BAR.gts4,
       LIKE_BUTTON: LIKE_BUTTON.gts4,
       SHUFFLE_BUTTON: SHUFFLE_BUTTON.gts4,
+      SPOTIFY_ICON: SPOTIFY_ICON.gts4,
       QUEUED_SONG: QUEUED_SONG.gts4,
     };
   return {
@@ -566,6 +598,7 @@ export const getStyles = (deviceName) => {
     PROGRESS_BAR: PROGRESS_BAR.gtr3,
     LIKE_BUTTON: LIKE_BUTTON.gtr3,
     SHUFFLE_BUTTON: SHUFFLE_BUTTON.gtr3,
+    SPOTIFY_ICON: SPOTIFY_ICON.gtr3,
     QUEUED_SONG: QUEUED_SONG.gtr3,
   };
 };

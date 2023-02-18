@@ -17,7 +17,7 @@ App({
     playerControl.connect();
     hmSetting.setBrightScreen(60);
     // constantly refresh player info
-    timer.createTimer(0, 10000, () => {
+    timer.createTimer(10, 10000, () => {
       playerControl.update();
     });
   },
