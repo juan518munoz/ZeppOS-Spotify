@@ -1,8 +1,8 @@
 # ZeppOS-Spotify
 Spotify manager for ZeppOS using Console api calls 
 
-![player](https://user-images.githubusercontent.com/62400508/216854610-34e33b0f-815b-4127-8d8d-81e2e7f77969.png)
-![player](https://user-images.githubusercontent.com/62400508/216854731-967dcb84-b12b-497a-befb-0c8751d206c3.png)
+![player](https://user-images.githubusercontent.com/62400508/219872494-9af74f2c-5053-448b-93b6-92e3d3ebfbf0.png)
+![player](https://user-images.githubusercontent.com/62400508/219872502-7ebde99c-2596-4136-b21f-faadb2ba2f18.png)
 
 # How to use
 
@@ -56,26 +56,9 @@ Important note: the log in process may sometimes fail retrieving user informatio
 
 # More screenshots
 
-#### Amazfit band 7
+![library](https://user-images.githubusercontent.com/62400508/219872523-a98ad1d2-562d-451a-98ea-163b538fee9e.png)
+![playlist](https://user-images.githubusercontent.com/62400508/219872527-62458c29-d42a-4e36-bb82-5c29ed638a8d.png)
+![zepp_screenshot_1676339827656](https://user-images.githubusercontent.com/62400508/219872568-35f91900-1e6f-4533-97c2-117754ef31a5.png)
 
-![player](https://user-images.githubusercontent.com/62400508/216854610-34e33b0f-815b-4127-8d8d-81e2e7f77969.png)
-![library](https://user-images.githubusercontent.com/62400508/216854612-a0e70cc5-4189-4656-987d-3bb5f95c1f59.png)
-![playlist](https://user-images.githubusercontent.com/62400508/216854616-061febee-1826-425c-be6a-ab0e5807f3bd.png)
 
-#### Amazfit GTS 3
 
-![player](https://user-images.githubusercontent.com/62400508/216854633-4597bbf3-e8c3-4711-a16f-2a222f5e4703.png)
-![library](https://user-images.githubusercontent.com/62400508/216854638-3f3841b8-7f95-4a83-b912-3cd9b2185184.png)
-![playlist](https://user-images.githubusercontent.com/62400508/216854639-54c5db0b-4476-4808-9392-318fe70bc419.png)
-
-#### Amazfit GTR 3
-
-![player](https://user-images.githubusercontent.com/62400508/216854665-69081548-b4b3-4398-bea0-1fe89646c5f2.png)
-![library](https://user-images.githubusercontent.com/62400508/216854698-8c2ea818-1070-4e43-ac15-1ed3229ea94e.png)
-![playlist](https://user-images.githubusercontent.com/62400508/216854702-7b321878-7884-41e8-be09-ef6418bea089.png)
-
-#### Amazfit GTS 4 mini
-
-![player](https://user-images.githubusercontent.com/62400508/216854731-967dcb84-b12b-497a-befb-0c8751d206c3.png)
-![library](https://user-images.githubusercontent.com/62400508/216854733-e8936b80-2b72-4a19-b97c-541df332fbe9.png)
-![playlist](https://user-images.githubusercontent.com/62400508/216854736-4316a5ab-9111-435a-8a40-a6254a852544.png)
