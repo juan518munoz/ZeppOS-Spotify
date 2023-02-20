@@ -74,6 +74,7 @@ Page({
     });
     progressBar = hmUI.createWidget(hmUI.widget.FILL_RECT, {
       ...styles.PROGRESS_BAR,
+      w: px(0),
     });
 
     spotifyIcon = hmUI.createWidget(hmUI.widget.IMG, {
@@ -144,6 +145,7 @@ Page({
       });
 
       progressBar.setProperty(hmUI.prop.MORE, {
+        ...styles.PROGRESS_BAR,
         w: px(DEVICE_WIDTH * playerControl.progress - 8),
       });
 

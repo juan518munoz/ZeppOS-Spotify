@@ -349,7 +349,6 @@ const PROGRESS_BAR = {
   band7: {
     x: px(8),
     y: px(controlsStart + DEVICE_HEIGHT * 0.4),
-    w: px(0),
     h: px(4),
     radius: px(2),
     color: 0x1db954,
@@ -365,7 +364,6 @@ const PROGRESS_BAR = {
   gts3: {
     x: px(8),
     y: px(controlsStart + DEVICE_HEIGHT * 0.38),
-    w: px(0),
     h: px(8),
     radius: px(4),
     color: 0x1db954,
@@ -373,7 +371,6 @@ const PROGRESS_BAR = {
   gtr3: {
     x: px(8),
     y: px(controlsStart + DEVICE_HEIGHT * 0.4),
-    w: px(0),
     h: px(8),
     radius: px(4),
     color: 0x1db954,
@@ -381,7 +378,6 @@ const PROGRESS_BAR = {
   gts4: {
     x: px(8),
     y: px(controlsStart + DEVICE_HEIGHT * 0.38),
-    w: px(0),
     h: px(8),
     radius: px(4),
     color: 0x1db954,
