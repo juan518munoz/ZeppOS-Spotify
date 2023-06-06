@@ -22,6 +22,7 @@ export class PlayerControl {
     this.queue = [];
     this.progress = 0;
     this.devices = [];
+    this.context = null;
   }
 
   connect() {
@@ -100,6 +101,18 @@ export class PlayerControl {
     this.shuffleState = toggle[this.shuffleState];
   }
 
+  playOffset(index) {
+    this.messageBuilder
+      .request({
+        func: "startPlaylist",
+        playlistId: this.context,
+        offset: index,
+      })
+      .then((data) => {
+        //console.log(data);
+      });
+  }
+
   update() {
     this.messageBuilder
       .request({
@@ -115,6 +128,7 @@ export class PlayerControl {
           progress = 0,
           songId = "",
           queue = [],
+          context = null,
         } = data;
 
         if (!this.player.isPlaying) {
@@ -126,6 +140,7 @@ export class PlayerControl {
         this.songId = songId;
         this.progress = progress;
         this.queue = queue;
+        this.context = context;
         isLiked ? (this.likeState = "liked") : (this.likeState = "notLiked");
         isShuffled
           ? (this.shuffleState = "shuffle")

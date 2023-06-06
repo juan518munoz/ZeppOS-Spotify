@@ -334,7 +334,7 @@ const PROGRESS_BAR_BKG = {
     h: px(8),
     radius: px(4),
     color: 0x5e5e5e,
-  },
+  },  
   gts4: {
     x: px(8),
     y: px(controlsStart + DEVICE_HEIGHT * 0.38),
@@ -342,6 +342,54 @@ const PROGRESS_BAR_BKG = {
     h: px(8),
     radius: px(4),
     color: 0x5e5e5e,
+  },
+};
+
+const TITLEBUTTON = {
+  band7: {
+    x: 0,
+    w: DEVICE_WIDTH,
+    text_size: px(36),
+    h: px(80),
+    radius: 12,
+    normal_color: 0x000000,
+    press_color: 0x1fdf64
+  },
+  gts4mini: {
+    x: 0,
+    w: DEVICE_WIDTH,
+    text_size: px(36),
+    h: px(80),
+    radius: 12,
+    normal_color: 0x000000,
+    press_color: 0x1fdf64
+  },
+  gts3: {
+    x: 0,
+    w: DEVICE_WIDTH,
+    text_size: px(36),
+    h: px(80),
+    radius: 12,
+    normal_color: 0x000000,
+    press_color: 0x1fdf64
+  },
+  gtr3: {
+    x: 0,
+    w: DEVICE_WIDTH,
+    text_size: px(36),
+    h: px(80),
+    radius: 12,
+    normal_color: 0x000000,
+    press_color: 0x1fdf64
+  },
+  gts4: {
+    x: 0,
+    w: DEVICE_WIDTH,
+    text_size: px(36),
+    h: px(80),
+    radius: 12,
+    normal_color: 0x000000,
+    press_color: 0x1fdf64
   },
 };
 
@@ -448,7 +496,7 @@ const SPOTIFY_ICON = {
   },
   gtr3: {
     x: DEVICE_WIDTH / 2 - px(24),
-    y: controlsStart + DEVICE_HEIGHT - px(24) - px(28),
+    y: controlsStart + DEVICE_HEIGHT - px(24) - px(42),
     src: "player_icon.png",
   },
   gts4: {
@@ -496,13 +544,13 @@ const QUEUED_SONG = {
     text: "",
   },
   gtr3: {
-    x: 0,
+    x: px(DEVICE_WIDTH * 0.15),
     //y: px(DEVICE_HEIGHT + 70 * (i + 1)),
-    w: px(DEVICE_WIDTH),
+    w: px(DEVICE_WIDTH * 0.7),
     h: px(48),
     color: 0xffffff,
     text_size: px(36),
-    align_h: hmUI.align.LEFT,
+    align_h: hmUI.align.CENTER_H,
     align_v: hmUI.align.CENTER_V,
     text_style: hmUI.text_style.ELLIPSIS,
     text: "",
@@ -596,5 +644,6 @@ export const getStyles = (deviceName) => {
     SHUFFLE_BUTTON: SHUFFLE_BUTTON.gtr3,
     SPOTIFY_ICON: SPOTIFY_ICON.gtr3,
     QUEUED_SONG: QUEUED_SONG.gtr3,
+    TITLEBUTTON: TITLEBUTTON.gtr3,
   };
 };

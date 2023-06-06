@@ -64,6 +64,54 @@ const LIBRARY_HEADER = {
   },
 };
 
+const TITLEBUTTON = {
+  band7: {
+    x: 0,
+    w: DEVICE_WIDTH,
+    text_size: px(36),
+    h: px(80),
+    radius: 12,
+    normal_color: 0x000000,
+    press_color: 0x1fdf64
+  },
+  gts4mini: {
+    x: 0,
+    w: DEVICE_WIDTH,
+    text_size: px(36),
+    h: px(80),
+    radius: 12,
+    normal_color: 0x000000,
+    press_color: 0x1fdf64
+  },
+  gts3: {
+    x: 0,
+    w: DEVICE_WIDTH,
+    text_size: px(36),
+    h: px(80),
+    radius: 12,
+    normal_color: 0x000000,
+    press_color: 0x1fdf64
+  },
+  gtr3: {
+    x: 0,
+    w: DEVICE_WIDTH,
+    text_size: px(36),
+    h: px(80),
+    radius: 12,
+    normal_color: 0x000000,
+    press_color: 0x1fdf64
+  },
+  gts4: {
+    x: 0,
+    w: DEVICE_WIDTH,
+    text_size: px(36),
+    h: px(80),
+    radius: 12,
+    normal_color: 0x000000,
+    press_color: 0x1fdf64
+  },
+};
+
 const TITLE = {
   band7: {
     x: 0,
@@ -102,13 +150,13 @@ const TITLE = {
     //text: name,
   },
   gtr3: {
-    x: 0,
+    x: px(DEVICE_WIDTH * 0.10),
     //y: px(DEVICE_HEIGHT * 0.35 + 60 * i),
-    w: px(DEVICE_WIDTH),
+    w: px(DEVICE_WIDTH * 0.68),
     h: px(48),
     color: 0xffffff,
     text_size: px(36),
-    align_h: hmUI.align.LEFT,
+    align_h: hmUI.align.CENTER_H,
     align_v: hmUI.align.CENTER_V,
     text_style: hmUI.text_style.ELLIPSIS,
     //text: name,
@@ -152,5 +200,6 @@ export const getStyles = (deviceName) => {
   return {
     LIBRARY_HEADER: LIBRARY_HEADER.gtr3,
     TITLE: TITLE.gtr3,
+    TITLEBUTTON: TITLEBUTTON.gtr3,
   };
 };

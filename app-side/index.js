@@ -128,9 +128,10 @@ const getAllPlaylists = async (ctx) => {
   }
 };
 
-const startPlaylist = async (playlistId = "") => {
+const startPlaylist = async (contextUri = "", offset = 0) => {
   const body = {
-    context_uri: `spotify:playlist:${playlistId}`,
+    context_uri: contextUri,
+    offset: {"position": offset},
   };
   try {
     await fetch({
@@ -217,6 +218,7 @@ const player = async (ctx, func = "", args = "") => {
           progress: 0,
           songId: "id",
           queue: [],
+          context: null,
         },
       });
       return;
@@ -230,6 +232,7 @@ const player = async (ctx, func = "", args = "") => {
         isLiked: false,
         progress: 0,
         songId: "",
+        context: null,
       });
     }
 
@@ -239,6 +242,7 @@ const player = async (ctx, func = "", args = "") => {
       progress_ms = 0,
       item: { name = "", artists = [], duration_ms = 0, id = "" } = {},
       is_playing = false,
+      context = null,
     } = body; //JSON.parse(body); // body
 
     let artistNames = artists.map((artist) => artist.name).join(", ");
@@ -255,6 +259,7 @@ const player = async (ctx, func = "", args = "") => {
         progress: progress,
         songId: id,
         queue: queue.slice(0, 16),
+        context: context.uri,
       },
     });
   } catch (error) {
@@ -287,6 +292,7 @@ AppSideService({
             progress: 0,
             songId: "id",
             queue: [],
+            context: null,
           },
         });
         return;
@@ -302,7 +308,7 @@ AppSideService({
       } else if (jsonRpc.func == "playlistInfo") {
         return playlist(ctx, jsonRpc.playlistId);
       } else if (jsonRpc.func == "startPlaylist") {
-        return startPlaylist(jsonRpc.playlistId);
+        return startPlaylist(jsonRpc.playlistId, jsonRpc.offset);
       }
     });
   },

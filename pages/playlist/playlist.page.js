@@ -47,9 +47,11 @@ Page({
       })
       .then((data) => {
         const { songList = [] } = data;
+        songList.push({ name : "", artistNames : "" })
 
         songList.forEach((track, i) => {
           const { name = "", artistNames = "" } = track;
+          
           hmUI.createWidget(hmUI.widget.TEXT, {
             ...styles.SONG,
             y: px(DEVICE_HEIGHT * 0.53 + 55 * i),
@@ -68,10 +70,11 @@ Page({
     messageBuilder
       .request({
         func: "startPlaylist",
-        playlistId: this.state.playlistId,
+        playlistId: `spotify:playlist:${this.state.playlistId}`,
+        offset: 0,
       })
       .then((data) => {
-        console.log(data);
+        //console.log(data);
       });
   },
   onDestroy() {

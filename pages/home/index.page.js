@@ -103,13 +103,13 @@ Page({
 
     // Queue
     for (let i = 0; i <= QUEUE_LENGHT; i++) {
-      let queuedSong = hmUI.createWidget(hmUI.widget.TEXT, {
+      const queuedSong = hmUI.createWidget(hmUI.widget.BUTTON, {
         y: px(DEVICE_HEIGHT * 2 + 70 * (i + 1)),
-        ...styles.QUEUED_SONG,
-      });
-      queuedSong.addEventListener(hmUI.event.CLICK_DOWN, () => {
-        // unreliable
-        //for (let j = 0; j <= i; j++) this.player("next");
+        text: '',
+        ...styles.TITLEBUTTON,
+        click_func: () => {
+          playerControl.playOffset(i);
+        },
       });
       queueList.push(queuedSong);
     }
@@ -148,13 +148,20 @@ Page({
         ...styles.PROGRESS_BAR,
         w: px(DEVICE_WIDTH * playerControl.progress - 8),
       });
-
+ 
       const queue = playerControl.queue;
-      for (let i = 0; i <= QUEUE_LENGHT; i++) {
-        const name = queue[i] ? queue[i] : "";
-        queueList[i].setProperty(hmUI.prop.MORE, {
-          text: `${i + 1}. ${name}`,
-        });
+      if(queue.length > 0){
+        for (let i = 0; i <= QUEUE_LENGHT; i++) {
+          const name = queue[i] ? queue[i] : "";
+  
+          if(i == QUEUE_LENGHT){
+            break;
+          }
+  
+          queueList[i].setProperty(hmUI.prop.TEXT, {
+            text: `${i + 1}. ${name}`,
+          });
+        }
       }
     });
   },
