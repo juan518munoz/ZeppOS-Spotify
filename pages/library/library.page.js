@@ -15,6 +15,7 @@ Page({
     });
 
     this.getAllPlaylists();
+
   },
   getAllPlaylists() {
     messageBuilder
@@ -23,28 +24,24 @@ Page({
       })
       .then((data) => {
         const { playLists = [] } = data;
+        playLists.push({ name : "", id : "" })
 
         playLists.forEach((playList, i) => {
           const { name = "", id = "" } = playList;
-          const widget = hmUI.createWidget(hmUI.widget.TEXT, {
-            y: px(DEVICE_HEIGHT * 0.36 + 60 * i),
+          
+          const widget = hmUI.createWidget(hmUI.widget.BUTTON, {
+            y: px(DEVICE_HEIGHT * 0.36 + 80 * i),
             text: name,
-            ...styles.TITLE,
-          });
-
-          const img = hmUI.createWidget(hmUI.widget.IMG, {
-            x: DEVICE_WIDTH - 36,
-            y: px(DEVICE_HEIGHT * 0.36 + 60 * i),
-            src: "arrow.png",
-          });
-          img.addEventListener(hmUI.event.CLICK_DOWN, () => {
-            hmApp.gotoPage({
-              url: "pages/playlist/playlist.page",
-              param: JSON.stringify({
-                name: name,
-                playlistId: id,
-              }),
-            });
+            ...styles.TITLEBUTTON,
+            click_func: () => {
+              hmApp.gotoPage({
+                url: "pages/playlist/playlist.page",
+                param: JSON.stringify({
+                  name: name,
+                  playlistId: id,
+                }),
+              });
+            },
           });
         });
       });
