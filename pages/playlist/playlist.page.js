@@ -70,7 +70,8 @@ Page({
     messageBuilder
       .request({
         func: "startPlaylist",
-        playlistId: this.state.playlistId,
+        playlistId: `spotify:playlist:${this.state.playlistId}`,
+        offset: 0,
       })
       .then((data) => {
         //console.log(data);

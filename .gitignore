@@ -14,3 +14,4 @@ selenium-debug.log
 *.njsproj
 *.sln
 utils/config/client.js
+utils/config/client.js

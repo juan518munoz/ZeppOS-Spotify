@@ -108,7 +108,7 @@ Page({
         text: '',
         ...styles.TITLEBUTTON,
         click_func: () => {
-          for (let j = 0; j <= i; j++) this.player("next");
+          playerControl.playOffset(i);
         },
       });
       queueList.push(queuedSong);
