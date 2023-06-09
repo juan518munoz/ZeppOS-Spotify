@@ -105,7 +105,10 @@ Page({
     for (let i = 0; i <= QUEUE_LENGHT; i++) {
       const queuedSong = hmUI.createWidget(hmUI.widget.BUTTON, {
         y: px(DEVICE_HEIGHT * 2 + 70 * (i + 1)),
-        ...styles.TITLEBUTTON
+        ...styles.TITLEBUTTON,
+        click_func: () => {
+          playerControl.playOffset({"uri": playerControl.queue[i].uri});
+        },
       });
       queueList.push(queuedSong);
     }
@@ -154,13 +157,8 @@ Page({
             break;
           }
    
-          queueList[i].setProperty(hmUI.prop.MORE, {
-            text: `${i + 1}. ${name}`,
-            y: px(DEVICE_HEIGHT * 2 + 70 * (i + 1)),
-            ...styles.TITLEBUTTON,
-            click_func: () => {
-              playerControl.playOffset({"uri": uri});
-            },
+          queueList[i].setProperty(hmUI.prop.TEXT, {
+            text: `${i + 1}. ${name}`
           });
         }
       }
