@@ -544,7 +544,7 @@ const QUEUED_SONG = {
     text: "",
   },
   gtr3: {
-    x: px(DEVICE_WIDTH * 0.15),
+    x: 0,
     //y: px(DEVICE_HEIGHT + 70 * (i + 1)),
     w: px(DEVICE_WIDTH * 0.7),
     h: px(48),
