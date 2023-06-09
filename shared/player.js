@@ -111,7 +111,6 @@ export class PlayerControl {
       .then((data) => {
         //console.log(data);
       });
-      this.update();
   }
 
   update() {
