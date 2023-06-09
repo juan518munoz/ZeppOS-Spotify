@@ -108,6 +108,8 @@ Page({
         ...styles.TITLEBUTTON,
         click_func: () => {
           playerControl.playOffset({"uri": playerControl.queue[i].uri});
+          playerControl.song = playerControl.queue[i].name
+          playerControl.artist = playerControl.queue[i].artists
         },
       });
       queueList.push(queuedSong);

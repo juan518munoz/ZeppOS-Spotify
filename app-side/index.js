@@ -88,8 +88,9 @@ const getQueue = async (ctx) => {
     const { body = {} } = res;
     const { queue } = body; //JSON.parse(body); // body
     queue.forEach((item) => {
-      const { name = "", uri = "" } = item;
-      q.push({name, uri});
+      const { name = "", uri = "", artists = "" } = item;
+      let artistNames = artists.map((artist) => artist.name).join(", ");
+      q.push({name, artistNames, uri});
     });
 
     return q;
