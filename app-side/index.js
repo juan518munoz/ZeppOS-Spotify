@@ -88,8 +88,8 @@ const getQueue = async (ctx) => {
     const { body = {} } = res;
     const { queue } = body; //JSON.parse(body); // body
     queue.forEach((item) => {
-      const { name = "" } = item;
-      q.push(name);
+      const { name = "", uri = "" } = item;
+      q.push({name, uri});
     });
 
     return q;
@@ -128,10 +128,10 @@ const getAllPlaylists = async (ctx) => {
   }
 };
 
-const startPlaylist = async (contextUri = "", offset = 0) => {
+const startPlaylist = async (contextUri = "", offset = null) => {
   const body = {
     context_uri: contextUri,
-    offset: {"position": offset},
+    offset: offset,
   };
   try {
     await fetch({

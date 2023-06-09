@@ -71,7 +71,7 @@ Page({
       .request({
         func: "startPlaylist",
         playlistId: `spotify:playlist:${this.state.playlistId}`,
-        offset: 0,
+        offset: {"position": 0},
       })
       .then((data) => {
         //console.log(data);
