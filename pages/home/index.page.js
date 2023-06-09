@@ -107,9 +107,7 @@ Page({
         y: px(DEVICE_HEIGHT * 2 + 70 * (i + 1)),
         ...styles.TITLEBUTTON,
         click_func: () => {
-          playerControl.playOffset({"uri": playerControl.queue[i].uri});
-          playerControl.song = playerControl.queue[i].name
-          playerControl.artist = playerControl.queue[i].artists
+          playerControl.playOffset(i);
         },
       });
       queueList.push(queuedSong);
