@@ -101,16 +101,19 @@ export class PlayerControl {
     this.shuffleState = toggle[this.shuffleState];
   }
 
-  playOffset(index) {
+  playOffset(i) {
     this.messageBuilder
       .request({
         func: "startPlaylist",
         playlistId: this.context,
-        offset: index,
+        offset: {"uri": this.queue[i].uri},
       })
       .then((data) => {
         //console.log(data);
       });
+
+      this.song = this.queue[i].name
+      this.artist = this.queue[i].artists
   }
 
   update() {

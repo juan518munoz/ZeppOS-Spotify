@@ -105,7 +105,6 @@ Page({
     for (let i = 0; i <= QUEUE_LENGHT; i++) {
       const queuedSong = hmUI.createWidget(hmUI.widget.BUTTON, {
         y: px(DEVICE_HEIGHT * 2 + 70 * (i + 1)),
-        text: '',
         ...styles.TITLEBUTTON,
         click_func: () => {
           playerControl.playOffset(i);
@@ -152,14 +151,14 @@ Page({
       const queue = playerControl.queue;
       if(queue.length > 0){
         for (let i = 0; i <= QUEUE_LENGHT; i++) {
-          const name = queue[i] ? queue[i] : "";
+          const {name, uri} = queue[i];
   
           if(i == QUEUE_LENGHT){
             break;
           }
-  
+   
           queueList[i].setProperty(hmUI.prop.TEXT, {
-            text: `${i + 1}. ${name}`,
+            text: `${i + 1}. ${name}`
           });
         }
       }
