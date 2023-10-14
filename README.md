@@ -4,6 +4,9 @@ Spotify manager for ZeppOS using Console api calls
 ![player](https://user-images.githubusercontent.com/62400508/219872494-9af74f2c-5053-448b-93b6-92e3d3ebfbf0.png)
 ![player](https://user-images.githubusercontent.com/62400508/219872502-7ebde99c-2596-4136-b21f-faadb2ba2f18.png)
 
+# Disclaimer for developers
+Read [this](https://github.com/juan518munoz/ZeppOS-Spotify/blob/master/IMPORTANT.md).
+
 # How to use
 
 ## Requirements
